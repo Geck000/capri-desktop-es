@@ -29,10 +29,12 @@ namespace CapriDesktop
         [STAThread]
         private static int Main(string[] args)
         {
+            I18n.Start(args);
             if (args.Length == 4 && args[0] == "--release-input") return InputRelease.Watch(args[1], args[2], args[3]);
             try { Native.SetProcessDpiAwarenessContext(new IntPtr(-4)); } catch (EntryPointNotFoundException) { Native.SetProcessDPIAware(); }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            if (args.Length == 2 && args[0] == "--test-spanish") return LocaleTests.Run(Path.GetFullPath(args[1]));
             bool smoke = args.Length == 2 && args[0] == "--smoke-test";
             bool bench = args.Length == 2 && args[0] == "--bench";
             if (args.Length == 1 && args[0] == "--stream") Computer.Streaming = Computer.StreamingAlways = true;
@@ -364,7 +366,7 @@ namespace CapriDesktop
         // A new install: she starts in the PC's own language when she speaks it, and with her tuned voice.
         internal static Preferences Fresh()
         {
-            Preferences fresh = new Preferences { Language = Brain.SystemLanguage(System.Globalization.CultureInfo.CurrentUICulture) };
+            Preferences fresh = new Preferences { Language = I18n.Enabled ? "Spanish" : Brain.SystemLanguage(System.Globalization.CultureInfo.CurrentUICulture) };
             fresh.Tune();
             return fresh;
         }
@@ -1637,7 +1639,7 @@ namespace CapriDesktop
             {
                 tray.Icon = icon != null ? new Icon(icon) : Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             }
-            tray.Text = "Capri · Double-click to restore";
+            tray.Text = I18n.T("Capri · Double-click to restore");
             tray.ContextMenuStrip = menu;
             tray.DoubleClick += delegate { RestoreAtCursor(); };
             tray.BalloonTipClicked += delegate { BalloonClicked(); };
@@ -2069,6 +2071,14 @@ namespace CapriDesktop
 
         private void CheckForUpdates(bool asked)
         {
+            // An upstream binary would replace the Spanish interface. Keep upgrades manual until a translated release exists.
+            if (I18n.Enabled)
+            {
+                updateStarted = true;
+                preferences.UpdateCheckedAt = DateTime.UtcNow.Ticks;
+                if (asked) mainframe.UpdateNote("Las actualizaciones de esta edición se instalan desde su repositorio en español.", false);
+                return;
+            }
             if (updating || installing) return;
             updating = true;
             updateStarted = true;
@@ -2891,13 +2901,13 @@ namespace CapriDesktop
         {
             greetTried = true;
             string[] holiday = Brain.Holiday(now);
-            string line = holiday != null ? holiday[random.Next(holiday.Length)] : Brain.Greeting(now.Hour);
+            string line = I18n.T(holiday != null ? holiday[random.Next(holiday.Length)] : Brain.Greeting(now.Hour));
             if (line == null || ticket != asking || Hushed || hidden || InChat || speech != null || talkState != TalkState.Off || typer.Visible) return;
             heard = "startup";
             box.Prompt = "> sys: ";
             if (holiday != null) holidaySaid = now.Date;
             // Her recorded hello costs nothing and needs no key. It wears their filters and layers, and a voice they've chosen says it instead (john_sandevistan, 31 Oct).
-            bool recorded = holiday == null && !preferences.Silent && !preferences.HdVoice && !preferences.ServerVoice && preferences.VoiceStyle == null;
+            bool recorded = !I18n.Enabled && holiday == null && !preferences.Silent && !preferences.HdVoice && !preferences.ServerVoice && preferences.VoiceStyle == null;
             if (recorded)
             {
                 Func<string, byte[]> free, chosen = PickVoice(false, out free);
@@ -3055,7 +3065,7 @@ namespace CapriDesktop
             riding = true;
             Native.SetWindowLong(Handle, -20, Native.GetWindowLong(Handle, -20) | 0x20);
             rideItem.Text = "Hop off";
-            tray.Text = hotkey ? "Capri · " + hopName + " to hop off" : "Capri · Hop off from this menu";
+            tray.Text = hotkey ? "Capri · " + hopName + I18n.T(" to hop off") : I18n.T("Capri · Hop off from this menu");
             if (!testing && !quiet) { balloonPage = null; balloonUpdate = false; balloonMainframe = false; tray.ShowBalloonTip(6000, "Capri is riding your cursor", hotkey ? "Press " + hopName + " to get her off." : "Right-click her tray icon, then choose Move and Hop off.", ToolTipIcon.Info); }
             Play(perchGlitch);
             frames.Start();
@@ -3073,7 +3083,7 @@ namespace CapriDesktop
             Play(grin);
             if (IsHandleCreated) Native.SetWindowLong(Handle, -20, Native.GetWindowLong(Handle, -20) & ~0x20);
             if (rideItem != null) rideItem.Text = "Ride cursor";
-            if (tray != null) tray.Text = "Capri · Double-click to restore";
+            if (tray != null) tray.Text = I18n.T("Capri · Double-click to restore");
             if (!IsDisposed) { Location = anchor; UpdateAnimation(); SavePreferences(); mainframe.Sync(); }
         }
 
@@ -7146,7 +7156,7 @@ namespace CapriDesktop
 
         internal void OpenFreeKeyPage() { OpenPage(FreeKeyPage); Tell("free key", FreeKeyLine); }
 
-        internal void OpenHelp() { OpenPage(HelpPage); }
+        internal void OpenHelp() { if (I18n.Enabled) Browse(I18n.HelpFile(Path.GetDirectoryName(settingsPath))); else OpenPage(HelpPage); }
         internal void OpenSupport() { OpenPage(SupportPage); }
 
         // Windows Settings > Privacy & security > Speech, where Online speech recognition is.
@@ -7761,6 +7771,52 @@ namespace CapriDesktop
             mainframe.Sync();
             ShowVoice();
             TestVoice();
+        }
+
+        private bool settingUpSpanish;
+        private const string SpanishVoiceArchive = "vits-piper-es_ES-sharvard-medium.tar.bz2";
+        internal bool SpanishVoicePicked { get { return preferences.ServerVoice && preferences.ServerApi == VoiceServer.Files && (preferences.ServerUrl ?? "").IndexOf("vits-piper-es_ES-sharvard-medium", StringComparison.OrdinalIgnoreCase) >= 0; } }
+
+        // A fixed Spanish Piper preset uses the existing local engine, without a key, server or personal voice recording.
+        internal void SetUpSpanishVoice()
+        {
+            if (testing || settingUpSpanish) return;
+            if (!kokoro.Installed)
+            {
+                SetUpFreeVoice(true);
+                mainframe.VoiceNote("Descargando el motor de voz. Cuando termine, vuelve a elegir Español · voz local gratuita.", false);
+                return;
+            }
+            settingUpSpanish = true;
+            mainframe.VoiceNote("Preparando la voz gratuita en español...", false);
+            string cache = Path.Combine(Path.GetDirectoryName(settingsPath), "voice", SpanishVoiceArchive);
+            ThreadPool.QueueUserWorkItem(delegate
+            {
+                string folder = null, problem = null;
+                int shown = -1;
+                try
+                {
+                    Engine.Fetch("https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/" + SpanishVoiceArchive, cache, 80318184,
+                        "b30a7a83df0518f0ee1c7039506648cade99f1f9b498fc49ed2ced2e2536bb5a", "voz en español",
+                        delegate(string stage, long done, long total)
+                        {
+                            int percent = total > 0 ? (int)(done * 100 / total) : 0;
+                            if (percent == shown) return;
+                            shown = percent;
+                            Post(delegate { mainframe.VoiceNote("Descargando voz en español: " + percent + "%", false); });
+                        }, delegate { return IsDisposed; });
+                    folder = ModelFile.Unpack(cache);
+                }
+                catch (Exception error) { problem = error.Message; }
+                Post(delegate
+                {
+                    settingUpSpanish = false;
+                    if (problem != null) { mainframe.VoiceNote("No se pudo preparar la voz española: " + problem, true); return; }
+                    SetLanguage("Spanish");
+                    UseVoiceServer(folder, "es", "1", "", VoiceServer.Files);
+                    mainframe.VoiceNote("Voz española lista. Funciona en tu PC, sin claves ni pagos.", false);
+                });
+            });
         }
 
         // Forget in its panel drops the key saved for that server, in use or kept aside.
@@ -9389,6 +9445,7 @@ namespace CapriDesktop
 
         private void Answer(int ticket, string said, TalkState state, bool quiet = false)
         {
+            said = I18n.T(said);
             if (ticket != asking || IsDisposed) return;
             voice.Stop();
             voiceUntil = 0;
@@ -9469,6 +9526,7 @@ namespace CapriDesktop
 
         private void Begin(int ticket, string said, TalkState state, byte[] wav)
         {
+            said = I18n.T(said);
             if (ticket != asking || IsDisposed || !FollowDelivery(ticket)) return;
             if (ticket == followTicket && !followLogged) { brain.Followed(said); followLogged = true; }
             if (slowWarned && brain.Remote != null && state != TalkState.Dormant) mainframe.ShowCloud(brain.Remote, cloudModels);
@@ -9694,6 +9752,7 @@ namespace CapriDesktop
 
         internal void Say(string text)
         {
+            text = I18n.T(text);
             speech = string.IsNullOrEmpty(text) ? null : text;
             speechStart = clock.Elapsed.TotalSeconds;
             mouths = null;

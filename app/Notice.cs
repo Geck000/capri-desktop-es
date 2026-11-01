@@ -33,8 +33,8 @@ namespace CapriDesktop
             catch (Exception)
             {
                 MessageBoxIcon icon = error ? MessageBoxIcon.Error : MessageBoxIcon.Information;
-                if (owner == null) MessageBox.Show(message, caption, MessageBoxButtons.OK, icon);
-                else MessageBox.Show(owner, message, caption, MessageBoxButtons.OK, icon);
+                if (owner == null) MessageBox.Show(I18n.T(message), I18n.T(caption), MessageBoxButtons.OK, icon);
+                else MessageBox.Show(owner, I18n.T(message), I18n.T(caption), MessageBoxButtons.OK, icon);
             }
         }
 
@@ -103,7 +103,7 @@ namespace CapriDesktop
         {
             if (e.Control && e.KeyCode == Keys.C)
             {
-                try { Clipboard.SetText(caption + Environment.NewLine + Environment.NewLine + message); } catch (System.Runtime.InteropServices.ExternalException) { }
+                try { Clipboard.SetText(I18n.T(caption) + Environment.NewLine + Environment.NewLine + I18n.T(message)); } catch (System.Runtime.InteropServices.ExternalException) { }
                 e.Handled = true;
             }
             base.OnKeyDown(e);

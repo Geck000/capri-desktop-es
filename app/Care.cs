@@ -153,6 +153,16 @@ namespace CapriDesktop
 
         internal CareLines(string path) { this.path = path; }
 
+        private static string LocalDefaults()
+        {
+            if (!I18n.Enabled) return Defaults;
+            return string.Join("\n", Array.ConvertAll(Defaults.Split('\n'), delegate(string row)
+            {
+                string prefix = row.StartsWith("## ", StringComparison.Ordinal) ? "## " : row.StartsWith("# ", StringComparison.Ordinal) ? "# " : row.StartsWith("- ", StringComparison.Ordinal) ? "- " : "";
+                return prefix + I18n.T(row.Substring(prefix.Length));
+            }));
+        }
+
         internal bool Create()
         {
             try
@@ -160,14 +170,15 @@ namespace CapriDesktop
                 if (!File.Exists(path))
                 {
                     Directory.CreateDirectory(Path.GetDirectoryName(path));
-                    using (StreamWriter writer = new StreamWriter(new FileStream(path, FileMode.CreateNew, FileAccess.Write))) writer.Write(Defaults);
+                    using (StreamWriter writer = new StreamWriter(new FileStream(path, FileMode.CreateNew, FileAccess.Write))) writer.Write(LocalDefaults());
                 }
                 else
                 {
                     string existing = File.ReadAllText(path);
-                    bool written = existing.IndexOf("# Capri's check-ins", StringComparison.Ordinal) >= 0;
-                    foreach (string heading in Care.Names) if (existing.IndexOf("## " + heading, StringComparison.Ordinal) >= 0) written = true;
-                    if (!written) File.AppendAllText(path, "\n\n" + Defaults);
+                    if (I18n.Enabled && existing.Replace("\r\n", "\n") == Defaults) { File.WriteAllText(path, LocalDefaults()); return true; }
+                    bool written = existing.IndexOf("# Capri's check-ins", StringComparison.Ordinal) >= 0 || existing.IndexOf("# " + I18n.T("Capri's check-ins"), StringComparison.Ordinal) >= 0;
+                    foreach (string heading in Care.Names) if (existing.IndexOf("## " + heading, StringComparison.Ordinal) >= 0 || existing.IndexOf("## " + I18n.T(heading), StringComparison.Ordinal) >= 0) written = true;
+                    if (!written) File.AppendAllText(path, "\n\n" + LocalDefaults());
                 }
                 return true;
             }
@@ -194,7 +205,7 @@ namespace CapriDesktop
                 while ((row = reader.ReadLine()) != null)
                 {
                     row = row.Trim();
-                    if (row.StartsWith("#", StringComparison.Ordinal)) section = row == "## " + name;
+                    if (row.StartsWith("#", StringComparison.Ordinal)) section = row == "## " + name || row == "## " + I18n.T(name);
                     else if (section && row.StartsWith("- ", StringComparison.Ordinal) && row.Substring(2).Trim().Length > 0)
                     {
                         string words = row.Substring(2).Trim();

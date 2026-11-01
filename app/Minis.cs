@@ -575,7 +575,7 @@ namespace CapriDesktop
             {
                 format.Alignment = centre ? StringAlignment.Center : StringAlignment.Near;
                 format.LineAlignment = centre ? StringAlignment.Center : StringAlignment.Near;
-                paint.DrawString(words, font, ink, box, format);
+                paint.DrawString(I18n.T(words), font, ink, box, format);
             }
         }
 

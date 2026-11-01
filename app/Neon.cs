@@ -137,7 +137,7 @@ namespace CapriDesktop
         }
 
         // A label that lets the mouse through to its window, so the window drags from anywhere that isn't a control.
-        internal sealed class Caption : Label
+        internal sealed class Caption : UiLabel
         {
             internal Caption()
             {
@@ -220,7 +220,7 @@ namespace CapriDesktop
                 using (GraphicsPath inner = Neon.Cut(RectangleF.Inflate(box, -3 * s, -3 * s), 0, 0, 4 * s, 0))
                 using (Pen pen = new Pen(Neon.OnInk, line))
                     graphics.DrawPath(pen, inner);
-            TextRenderer.DrawText(graphics, Text, Font, ClientRectangle, ink, TextFormatFlags.VerticalCenter | TextFormatFlags.HorizontalCenter | TextFormatFlags.SingleLine | TextFormatFlags.NoPrefix | TextFormatFlags.EndEllipsis);
+            UiText.DrawText(graphics, Text, Font, ClientRectangle, ink, TextFormatFlags.VerticalCenter | TextFormatFlags.HorizontalCenter | TextFormatFlags.SingleLine | TextFormatFlags.NoPrefix | TextFormatFlags.EndEllipsis);
         }
     }
 }
