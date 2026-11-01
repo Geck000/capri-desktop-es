@@ -7994,7 +7994,7 @@ namespace CapriDesktop
                 byte[] wav = null;
                 string problem = null;
                 Stopwatch took = Stopwatch.StartNew();
-                try { wav = trial.Speak(Voice.Spoken(TestLine)); }
+                try { wav = trial.Speak(Voice.Spoken(I18n.T(TestLine))); }
                 catch (VoiceException error) { problem = error.Message; }
                 catch (Exception error) { problem = Voice.Short("Your voice server glitched: " + error.Message); }
                 double seconds = took.Elapsed.TotalSeconds;
@@ -24406,7 +24406,7 @@ namespace CapriDesktop
                                 FreeSpeak = fxFreeWas;
                                 Speak = fxSpeakWas;
                             }
-                            bool fxPreviewed = fxFreeHeard == Voice.Spoken(StyleLine) && fxFreePaid == null && heard == "voice check" && fxAsked == fxStill && fxPaid == Voice.Spoken(StyleLine) && fxHeard == null
+                            bool fxPreviewed = fxFreeHeard == Voice.Spoken(I18n.T(StyleLine)) && fxFreePaid == null && heard == "voice check" && fxAsked == fxStill && fxPaid == Voice.Spoken(I18n.T(StyleLine)) && fxHeard == null
                                 && VoiceFx.Pitch == 3 && VoiceFx.Speed == 120 && preferences.VoicePitch == 3 && mainframe.VoiceStyleStatus == "+3 | 1.2x | Off | Off";
                             asking++;
                             CloseTalk();
@@ -25968,7 +25968,7 @@ namespace CapriDesktop
                                 vsFreeHeard = null;
                                 TestVoice();
                                 vsPump(delegate { return vsTalking() && vsFreeHeard != null; });
-                                vsFellSpoke = vsTalking() && vsFreeHeard == Voice.Spoken(TestLine);
+                                vsFellSpoke = vsTalking() && vsFreeHeard == Voice.Spoken(I18n.T(TestLine));
                                 vsFellState = reply + " | " + (voiceUntil > 0) + " | " + vsFreeHeard;
                                 vsFellNote = mainframe.VoiceNoteText;
                                 asking++;
@@ -25977,7 +25977,7 @@ namespace CapriDesktop
                                 vsFreeHeard = null;
                                 TestVoice();
                                 vsPump(delegate { return vsTalking() && vsFreeHeard != null; });
-                                vsOnceSpoke = vsTalking() && vsFreeHeard == Voice.Spoken(TestLine);
+                                vsOnceSpoke = vsTalking() && vsFreeHeard == Voice.Spoken(I18n.T(TestLine));
                                 vsOnceNote = mainframe.VoiceNoteText;
                                 vsMode = "wav";
                                 asking++;
@@ -29970,3 +29970,4 @@ namespace CapriDesktop
         }
     }
 }
+
