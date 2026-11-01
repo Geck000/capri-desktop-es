@@ -85,7 +85,11 @@ namespace CapriDesktop
                     Require(frame.LayersCrowded == null, "capas: " + frame.LayersCrowded);
                     foreach (Form form in Application.OpenForms) if (form != frame && form.GetType().Name == "LayersSheet") Capture(form, output, "capas");
                     frame.CloseLayers();
-                    foreach (float zoom in new[] { 1.25f, 1.5f, 2f }) Require(frame.LayersAt(zoom, Path.Combine(output, "capas-" + (int)(zoom * 100) + ".png")) == null, "capas escaladas");
+                    foreach (float zoom in new[] { 1.25f, 1.5f, 2f })
+                    {
+                        string layerProblem = frame.LayersAt(zoom, Path.Combine(output, "capas-" + (int)(zoom * 100) + ".png"));
+                        Require(layerProblem == null, "capas al " + zoom + ": " + layerProblem);
+                    }
                     frame.ShowExtras();
                     Application.DoEvents();
                     Require(frame.ExtrasCrowded == null, "extras: " + frame.ExtrasCrowded);

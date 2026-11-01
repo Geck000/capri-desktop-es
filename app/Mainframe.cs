@@ -2576,6 +2576,12 @@ namespace CapriDesktop
             using (LayersSheet drawn = new LayersSheet(this, zoom))
             {
                 drawn.Show(this);
+                // This is a rendering-test helper. A small CI desktop otherwise clamps the simulated 150/200% canvas.
+                float unit = drawn.DeviceDpi / 96f * zoom;
+                Size canvas = new Size((int)Math.Round(LayersSheet.Wide * unit), (int)Math.Round(LayersSheet.Tall * unit));
+                drawn.MaximumSize = canvas;
+                drawn.MinimumSize = canvas;
+                drawn.ClientSize = canvas;
                 string crowded = drawn.Crowded(), size = " (" + drawn.ClientSize.Width + " x " + drawn.ClientSize.Height + " at " + zoom + ")";
                 if (picture != null) drawn.Picture(picture);
                 drawn.Close();

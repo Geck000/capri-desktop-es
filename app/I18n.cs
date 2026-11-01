@@ -14,6 +14,7 @@ namespace CapriDesktop
     {
         internal static bool Enabled = true;
         private static readonly HashSet<Control> Bound = new HashSet<Control>();
+        private static readonly HashSet<ToolStripDropDown> BoundMenus = new HashSet<ToolStripDropDown>();
         internal static bool Trace;
         internal static readonly HashSet<string> Untranslated = new HashSet<string>();
         private static readonly Dictionary<string, string> Words = Load("Capri.Locale.es-ES.tsv");
@@ -108,6 +109,9 @@ namespace CapriDesktop
 
         internal static void Menu(ToolStripDropDown menu)
         {
+            if (!Enabled || !BoundMenus.Add(menu)) return;
+            Dictionary<ToolStripItem, Padding> padding = new Dictionary<ToolStripItem, Padding>();
+            menu.Disposed += delegate { BoundMenus.Remove(menu); };
             menu.Opening += delegate
             {
                 foreach (ToolStripItem item in menu.Items)
@@ -115,7 +119,9 @@ namespace CapriDesktop
                     item.AccessibleName = T(item.Text);
                     item.ToolTipText = T(item.ToolTipText);
                     int extra = Math.Max(0, TextRenderer.MeasureText(T(item.Text), item.Font).Width - TextRenderer.MeasureText(item.Text, item.Font).Width);
-                    item.Padding = new Padding(0, 0, extra, 0);
+                    Padding original;
+                    if (!padding.TryGetValue(item, out original)) padding[item] = original = item.Padding;
+                    item.Padding = new Padding(original.Left, original.Top, original.Right + extra, original.Bottom);
                 }
             };
         }
