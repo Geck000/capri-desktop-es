@@ -1,0 +1,31 @@
+name: Español para Windows
+on:
+  push:
+    branches: [espanol, main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  espanol:
+    runs-on: windows-2025
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - name: Compilar y comprobar español
+        shell: pwsh
+        run: ./ci/build-windows.ps1 -OutputDirectory out/windows -SpanishTest
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: capri-espanol-windows
+          path: |
+            out/windows/Capri.exe
+            out/windows/Capri-Setup.exe
+            out/windows/spanish/*.png
+            out/windows/spanish/resultado.txt
+            out/windows/spanish/fallo.txt
+            LICENSE.md
+            README.md
+            README.en.md
+            docs/es/ayuda.html
