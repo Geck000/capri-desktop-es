@@ -1,0 +1,810 @@
+# Capri para Windows — español. Clave original TAB traducción. Conservar nombres de productos y modelos.
+Capri Mainframe	Panel de Capri
+MAINFRAME	PANEL
+Minimize	Minimizar
+Close	Cerrar
+Settings	Ajustes
+BRAIN >	IA >
+BRAIN	IA
+Refresh	Actualizar
+Set up her brain	Preparar su IA
+Have Ollama? Open it, then press Refresh.	¿Tienes Ollama? Ábrelo y pulsa Actualizar.
+Pick one. Only one brain runs at a time.	Elige una IA. Solo se usa una a la vez.
+NORMAL	NORMAL
+Free · local model	Gratis · modelo local
+HIGHER	SUPERIOR
+Free · NVIDIA API	Gratis · API de NVIDIA
+MAX INTELLIGENCE	MÁXIMA POTENCIA
+Cloud API keys	Claves de API en la nube
+Start with this!	¡Empieza aquí!
+Free key	Clave gratis
+NVIDIA API key	Clave de API de NVIDIA
+Paste your free NVIDIA key	Pega tu clave gratuita de NVIDIA
+Connect	Conectar
+VOICE >	VOZ >
+VOICE	VOZ
+Ctrl + Alt + V to talk	Ctrl + Alt + V para hablar
+OFF	NO
+ON	SÍ
+Off	No
+On	Sí
+Silent · text only	Silencio · solo texto
+PREBUILT LOCAL	LOCAL INCLUIDA
+Her voices · free	Sus voces · gratis
+CUSTOM LOCAL	LOCAL PROPIA
+Your own model	Tu propio modelo
+CLOUD VOICE	VOZ EN LA NUBE
+Needs a key	Necesita una clave
+Set up	Preparar
+Set up your own voice model	Preparar tu propio modelo de voz
+Setup guide	Guía de uso
+Cloud voice service	Servicio de voz en la nube
+ElevenLabs API key	Clave de API de ElevenLabs
+Voice ID	ID de voz
+ElevenLabs voice ID	ID de voz de ElevenLabs
+Default model	Modelo base
+Free voice: Her own	Voz gratis: la suya
+Voice model	Modelo de voz
+Your voice model	Tu modelo de voz
+Get free voice	Obtener voz
+Mic: default	Micro: predeterminado
+Microphone	Micrófono
+Test	Probar
+Ctrl + Alt + N mutes mic	Ctrl + Alt + N silencia el micro
+Support	Apoyar
+Support Capri: opens Lachy's Ko-fi in your browser	Apoyar a Capri: abre el Ko-fi de Lachy en tu navegador
+Hide Capri	Ocultar Capri
+Show Capri	Mostrar Capri
+Bring here	Traer aquí
+Ride cursor	Subir al cursor
+Hop off	Bajarse
+Check for updates	Buscar actualizaciones
+Help	Ayuda
+Help: ask Capri on the website	Ayuda: pregunta a Capri en la web
+Quit Capri	Salir de Capri
+Advanced Settings	Más ajustes
+Simple Settings	Ajustes básicos
+Advanced Settings: show every setting	Más ajustes: mostrar todas las opciones
+Simple Settings: show only the main settings	Ajustes básicos: mostrar solo las opciones principales
+YOU >	TÚ >
+YOU	TÚ
+Open her notes	Abrir sus notas
+Open her notes: me.md, her notes about you	Abrir me.md, sus notas sobre ti
+Language	Idioma
+Her language	Su idioma
+What should she call you?	¿Cómo debe llamarte?
+Get to know me	Conocerme
+Get to know me: she asks what to call you, your pronouns and what you're into, and keeps them in me.md	Te pregunta tu nombre, pronombres e intereses y los guarda en me.md
+Your name or a nickname	Tu nombre o apodo
+Save	Guardar
+Applies to every voice	Se aplica a todas las voces
+Layers: Off	Capas: no
+Layers	Capas
+Voice layers: two copies of her voice under her, each with its own pitch and delay	Capas de voz: dos copias de su voz, cada una con su tono y retardo
+Volume	Volumen
+Her voice volume	Volumen de su voz
+Pitch	Tono
+Her voice's pitch	Tono de su voz
+Speed	Velocidad
+Her voice's speed	Velocidad de su voz
+Robot	Robot
+How robotic her voice sounds	Cuánto suena a robot su voz
+Glitch	Distorsión
+How much her voice glitches	Cuánta distorsión tiene su voz
+Sounds	Sonidos
+Sound effects volume	Volumen de los efectos de sonido
+Typing sound	Sonido al escribir
+When she types	Cuando escribe
+Typing sound. A soft typing sound while her text replies type out	Sonido suave mientras aparecen sus respuestas escritas
+Listen for Capri	Escuchar «Capri»
+Say her name anywhere to chat	Di su nombre para conversar
+Listen for Capri. Keep the mic open; say her name anywhere in your sentence. Stop and push to talk still work	Mantiene el micrófono abierto. Di su nombre en una frase. Puedes detenerla o pulsar para hablar
+Free voice in games	Voz gratis en juegos
+Free voice in games: while a game or video is full screen, her free voice talks instead of her HD voice, so the game gets the graphics card	En juegos o vídeos a pantalla completa usa su voz gratuita en lugar de la voz HD para dejar la gráfica al juego
+MOVES >	MOVIMIENTO >
+MOVES	MOVIMIENTO
+Mini player	Minirreproductor
+Mini player. It shows what's playing while music plays, and she sits on it	Muestra la música que suena y Capri se sienta encima
+Wander	Pasear
+How much she wanders	Cuánto pasea
+Sleep	Dormir
+How long until she falls asleep	Tiempo hasta que se duerme
+Pop-ins	Visitas
+How often she pops in to say hi	Con qué frecuencia viene a saludarte
+Dance to music	Bailar con música
+Glitch in at startup	Aparición con distorsión
+KEYS >	ATAJOS >
+KEYS	ATAJOS
+Talk: Ctrl + Alt + V	Hablar: Ctrl + Alt + V
+Her talk key. Click, press new keys, then Confirm	Atajo para hablar. Haz clic, pulsa las nuevas teclas y confirma
+Mute mic: Ctrl + Alt + N	Silenciar micro: Ctrl + Alt + N
+Her mute key. Click, press new keys, then Confirm	Atajo para silenciar el micro. Haz clic, pulsa las nuevas teclas y confirma
+Type: Ctrl + Alt + T	Escribir: Ctrl + Alt + T
+Her typing key. Click, press new keys, then Confirm	Atajo para escribir. Haz clic, pulsa las nuevas teclas y confirma
+Hide/show: Ctrl + Alt + H	Ocultar/mostrar: Ctrl + Alt + H
+Her hide key. Click, press new keys, then Confirm	Atajo para ocultarla. Haz clic, pulsa las nuevas teclas y confirma
+Quiet: Ctrl + Alt + P	Silencio: Ctrl + Alt + P
+Her quiet key: she only talks when you talk to her until you press it again. Click, press new keys, then Confirm	Solo responde cuando le hablas hasta que vuelvas a pulsar el atajo. Haz clic, pulsa las nuevas teclas y confirma
+Push to talk: not set	Pulsar para hablar: sin asignar
+Her push-to-talk key: hold it to talk to her, with a game in front too. Click, press a key or a mouse button, then Confirm	Mantén pulsado para hablar, también jugando. Haz clic, pulsa una tecla o un botón del ratón y confirma
+Gaming Mode: Ctrl + Alt + G	Modo juego: Ctrl + Alt + G
+Her Gaming Mode key: she reacts to your game until you close it. Click, press new keys, then Confirm	Reacciona a tu juego hasta que lo cierras. Haz clic, pulsa las nuevas teclas y confirma
+Confirm	Confirmar
+Confirm her new keys	Confirmar el nuevo atajo
+Cancel	Cancelar
+Cancel and keep her old keys	Cancelar y conservar el atajo anterior
+Turn her push-to-talk key off	Desactivar el atajo de pulsar para hablar
+Size	Tamaño
+Her size	Su tamaño
+Check in on me	Ven a verme
+Always on top	Siempre delante
+Mainframe size	Tamaño del panel
+Mainframe size. Auto makes it bigger when Virtual Super Resolution or DSR shrinks a big desktop onto a smaller screen	Tamaño del panel. Auto lo amplía cuando Virtual Super Resolution o DSR reduce un escritorio grande a una pantalla menor
+Head pats	Caricias
+Head pats. Rubbing the cursor over her gets a grin and a line	Pasa el cursor por su cabeza: sonríe y dice algo
+WATCH >	PANTALLA >
+WATCH	PANTALLA
+Watch my screen	Mirar mi pantalla
+Watch my screen. She comments now and then	Comenta de vez en cuando lo que ve en tu pantalla
+Remember what she sees	Recordar lo que ve
+Remember what she sees. What she saw on your screen stays in her memory for three hours even when she said nothing about it, which uses a little more of your API	Guarda durante tres horas lo que ve, aunque no lo comente. Consume algo más de API
+Every	Cada
+Time between glances	Tiempo entre miradas
+Watch-along memory	Memoria al mirar
+Lines of PC dialogue held in memory while watching together. The oldest half becomes a note when Remember what she sees is on	Líneas de diálogo que recuerda al mirar contigo. La mitad más antigua se resume si activas Recordar lo que ve
+Stay on my model	Mantener mi modelo
+Stay on my model. When an NVIDIA model gets stuck she says so instead of switching to another one	Si un modelo de NVIDIA se atasca, te avisa en lugar de cambiar a otro
+Replies	Respuestas
+Reply length	Extensión de las respuestas
+Memory	Memoria
+How much of the chat she keeps	Cuánto recuerda de la conversación
+Memory size	Tamaño de memoria
+Memory size in tokens for Ollama and her built-in brain. Auto keeps her usual context size	Memoria en tokens para Ollama y la IA integrada. Auto conserva el contexto habitual
+Max reply	Límite de respuesta
+The longest reply she can give, in tokens. Auto keeps to Replies above; 2K or 8K lets her run on. Jobs keep more room when they need it	Máximo de tokens por respuesta. Auto respeta Respuestas; 2K y 8K permiten ampliar. Las tareas disponen de más espacio si lo necesitan
+Bubble	Bocadillo
+How long her replies stay up	Tiempo que se muestran sus respuestas
+Follow-up messages	Mensajes adicionales
+Follow-up messages. Sometimes she adds a second thought after her answer. Your typing or speech drops it	A veces añade algo tras responder. Si escribes o hablas, lo cancela
+Custom model name	Nombre del modelo propio
+Use	Usar
+A model in Ollama, on your local server or on your key.	Modelo de Ollama, de tu servidor o de tu API.
+Local server address	Dirección del servidor local
+HABITS >	HÁBITOS >
+HABITS	HÁBITOS
+Obsidian vault	Bóveda Obsidian
+Obsidian vault: keep her notes in your Obsidian vault	Guardar sus notas en tu bóveda de Obsidian
+Open her memories	Abrir recuerdos
+Open her memories: memories.md and her chat transcripts, kept on this PC	Abrir memories.md y las conversaciones guardadas en este PC
+Start with Windows	Iniciar con Windows
+Show on Discord	Mostrar en Discord
+Use her cursor	Usar su cursor
+Remember our chats	Recordar nuestras charlas
+Remember our chats. She keeps daily transcripts and memories.md on this PC, never uploaded	Guarda las conversaciones diarias y memories.md en este PC, sin subirlos
+Security	Seguridad
+Security: what she does on your PC without asking first	Qué puede hacer en tu PC sin preguntarte antes
+Perch	Al sentarse
+Her perch frames per second	Fotogramas por segundo al sentarse
+Keep PC awake for jobs	PC activo en tareas
+Hide in full screen	Ocultar a pantalla completa
+Mini player over full screen	Reproductor sobre pantalla
+Explore while I'm away	Explorar en mi ausencia
+Keep PC awake for jobs. Keeps the PC and screen awake while a job runs, waits for your answer or watches for something	Mantiene activos el PC y la pantalla mientras trabaja, espera tu respuesta o vigila algo
+Hide in full screen. Gaming Mode takes priority; a manual hide stays hidden	El modo juego tiene prioridad. Si la ocultas manualmente, sigue oculta
+Mini player over full screen. Works over borderless windows; exclusive full screen cannot show overlays	Funciona sobre ventanas sin bordes. La pantalla completa exclusiva no admite superposiciones
+Explore while I'm away. Scrolls browser or reader pages without moving your mouse; your input stops her	Desplaza páginas del navegador o lector sin mover el ratón. Se detiene cuando vuelves
+Explore after	Explorar tras
+How long you are away before she scrolls a browser or reader	Tiempo ausente antes de que desplace páginas del navegador o lector
+Edit check-in lines	Editar recordatorios
+Edit her check-in lines in check-ins.md; remove lines to silence a check-in	Edita check-ins.md; elimina las frases para silenciar un recordatorio
+GAMES >	JUEGOS >
+GAMES	JUEGOS
+Comments	Comentarios
+How much she says about a game you're playing: off, only when something happens, or chatty	Comentarios durante el juego: ninguno, solo cuando ocurre algo o charlando
+Gaming Mode	Modo juego
+Gaming Mode. She reacts to your game until you close it. "Hey Capri, activate gaming mode" turns it on. Works best on MAX INTELLIGENCE.	Reacciona al juego hasta que lo cierres. Di «Capri, activa el modo juego». Funciona mejor con MÁXIMA POTENCIA
+She reacts to your game until you close it.	Reacciona al juego hasta que lo cierras.
+"Hey Capri, activate gaming mode" turns it on.	Di «Capri, activa el modo juego».
+Works best on MAX INTELLIGENCE.	Funciona mejor con MÁXIMA POTENCIA.
+Clip my games	Grabar mis partidas
+Clip my games. Keeps recent game video and PC sound in memory; clips stay in Videos\Capri Clips on this PC	Mantiene vídeo y sonido recientes en memoria. Los clips se guardan en Vídeos\Capri Clips en este PC
+Save big moments	Guardar grandes momentos
+Save big moments. Turns on Clip my games and saves the last 30 seconds when her game comments spot something worth keeping	Activa la grabación y guarda los últimos 30 segundos cuando detecta un momento destacable
+Fast hands in games	Acciones rápidas en juegos
+Mute her	Silenciarla
+Mute her. She stops talking on her own and only answers when you talk to her, the same as her Quiet key	Solo responde cuando le hablas, igual que el atajo de silencio
+Fast hands in games. On a Claude key she plays games on Claude Haiku, which moves about three times faster and costs far less. When she's stuck she asks the brain you picked, or Claude Sonnet if that's Haiku, and chat stays on the brain you picked	Con una clave de Claude juega usando Haiku, más rápido y económico. Si se atasca consulta tu modelo, o Sonnet si usabas Haiku. La conversación conserva tu modelo
+Obsidian memory vault	Bóveda de recuerdos de Obsidian
+Which Obsidian vault her memories go in	Bóveda de Obsidian donde guardar sus recuerdos
+Her own notes (no vault)	Sus propias notas (sin bóveda)
+Browse	Examinar
+Browse...	Examinar...
+That vault wasn't there when she started, so she's using her own notes.	La bóveda no estaba disponible al iniciar. Está usando sus propias notas.
+Pick one of your Obsidian vaults and her memories go in a Capri Memories note there.	Elige una bóveda: guardará sus recuerdos en una nota Capri Memories.
+No Obsidian vaults found on this PC. Open one in Obsidian first, or Browse to a note.	No se han encontrado bóvedas. Abre una en Obsidian o busca una nota.
+Pick the note her memories go in	Elige la nota para sus recuerdos
+Notes (*.md)|*.md	Notas (*.md)|*.md
+MEMORY VAULT >	BÓVEDA DE RECUERDOS >
+MEMORY VAULT	BÓVEDA DE RECUERDOS
+Back	Volver
+Perch over 30 fps uses more CPU	Más de 30 fps consume más CPU
+Looking for a brain...	Buscando una IA...
+Running on this PC	Funciona en este PC
+Most NVIDIA models can't see your screen.	Muchos modelos NVIDIA no ven la pantalla.
+Paste a brain API key	Pega una clave de API para la IA
+Forget	Olvidar
+No brain yet	Aún sin IA
+Setup stopped	Preparación detenida
+Wake her up	Despertarla
+Try again	Reintentar
+Setting up her brain	Preparando su IA
+Waking her up	Despertando
+Starting...	Iniciando...
+Voice, key and model...	Voz, clave y modelo...
+Paste API key	Pega la clave de API
+Your voice	Tu voz
+Pick a voice model...	Elige un modelo de voz...
+Your voice (HD)	Tu voz (HD)
+Pick a new clip of you...	Elige otra grabación tuya...
+Your voice (HD) · pick a clip of you...	Tu voz (HD) · elige una grabación tuya...
+Pick 5 to 30 seconds of you talking, or of a voice you have the rights and consent to use	Elige de 5 a 30 segundos de tu voz o de una voz que tengas derecho y permiso para usar
+Voice clips (*.wav;*.mp3;*.m4a)|*.wav;*.mp3;*.m4a|All files (*.*)|*.*	Grabaciones (*.wav;*.mp3;*.m4a)|*.wav;*.mp3;*.m4a|Todos los archivos (*.*)|*.*
+not set	sin asignar
+Push to talk is off.	Pulsar para hablar está desactivado.
+Press new keys, then Confirm	Pulsa el nuevo atajo y confirma
+Windows default	Predeterminado de Windows
+default	predeterminado
+Online speech recognition	Reconocimiento de voz en línea
+Voice from	Origen de voz
+Address	Dirección
+Voice server address, or a voice model's folder	Dirección del servidor de voz o carpeta del modelo
+Model	Modelo
+Optional	Opcional
+Model name, optional	Nombre del modelo (opcional)
+Voice	Voz
+Voice name or ID, optional	Nombre o ID de voz (opcional)
+Key	Clave
+Key. It goes only to this server, as a Bearer key	Clave. Solo se envía a este servidor, como clave Bearer
+Key forgotten.	Clave eliminada.
+Use this server	Usar servidor
+Cloud voice	Voz en la nube
+Custom local voice	Voz local propia
+Model folder	Carpeta del modelo
+Browse to a voice model	Buscar un modelo de voz
+Kokoro only, like es	Solo Kokoro, por ejemplo es
+Speaker or clip	Voz o grabación
+Key cleared: a model file needs none.	Clave eliminada: un modelo local no la necesita.
+Getting your Fish Audio voices...	Cargando tus voces de Fish Audio...
+New voice from a clip...	Nueva voz desde una grabación...
+Pick 10 to 30 seconds of a voice you have the rights and consent to use	Elige de 10 a 30 segundos de una voz que tengas derecho y permiso para usar
+Voice clips (*.wav;*.mp3;*.m4a;*.flac)|*.wav;*.mp3;*.m4a;*.flac|All files (*.*)|*.*	Grabaciones (*.wav;*.mp3;*.m4a;*.flac)|*.wav;*.mp3;*.m4a;*.flac|Todos los archivos (*.*)|*.*
+Making your Fish Audio voice...	Creando tu voz de Fish Audio...
+Made your Fish Audio voice. Press Test to hear it.	Voz de Fish Audio creada. Pulsa Probar para escucharla.
+Pick a clip of a voice you have the rights and consent to use	Elige una grabación de una voz que tengas derecho y permiso para usar
+Pocket TTS models copy this clip's voice. Press Test to hear it.	Pocket TTS reproduce la voz de esta grabación. Pulsa Probar para escucharla.
+Pick a voice model: its .tar.bz2, or the .onnx in its folder	Elige el .tar.bz2 del modelo o el .onnx de su carpeta
+Voice models (*.tar.bz2;*.zip;*.onnx)|*.tar.bz2;*.zip;*.onnx|All files (*.*)|*.*	Modelos de voz (*.tar.bz2;*.zip;*.onnx)|*.tar.bz2;*.zip;*.onnx|Todos los archivos (*.*)|*.*
+Unpacked. Press Test to hear it.	Extraído. Pulsa Probar para escucharlo.
+Asking your server...	Consultando tu servidor...
+SECURITY >	SEGURIDAD >
+What she does on your PC without asking. With a toggle off she asks first, and does it when you say yes.	Qué puede hacer sin preguntar. Si desactivas una opción, te pedirá permiso antes de actuar.
+Preset	Perfil
+Security preset: Lockdown, Guarded, Trusted or Blackwall	Perfil de seguridad: Bloqueo, Protegido, Confianza o Blackwall
+HER HANDS >	SUS ACCIONES >
+HER JOBS >	SUS TAREAS >
+LISTENING >	ESCUCHA >
+Extras	Extras
+EXTRAS >	EXTRAS >
+These start off. Turn on what you want. They're all in Settings too.	Empiezan desactivadas. Activa las que quieras; también están en Ajustes.
+She glances at your screen and comments. Costs a little on a paid brain.	Mira tu pantalla y comenta. Con una IA de pago tiene un pequeño coste.
+Comment on my games	Comentar mis partidas
+She talks about your game as you play. Costs a little on a paid brain.	Comenta mientras juegas. Con una IA de pago tiene un pequeño coste.
+Keeps the last two minutes of your game in memory. Say clip that to save it.	Guarda los dos últimos minutos en memoria. Di «guarda un clip» para conservarlos.
+She keeps listening and answers when you say her name.	Sigue escuchando y responde cuando dices su nombre.
+Done	Listo
+Voice layers	Capas de voz
+VOICE LAYERS >	CAPAS DE VOZ >
+Her voice, and two copies of it mixed in under her, each with its own pitch and delay.	Su voz y dos copias mezcladas, cada una con su tono y retardo.
+Voice layers. Off, she sounds as she always has	Sin capas conserva su voz habitual
+Off: she sounds as she always has. On: every voice she has, ElevenLabs too.	Desactivado: voz habitual. Activado: se aplica a todas las voces, incluida ElevenLabs.
+Hear her	Escuchar
+Hear her: she says a line in her voice as it is now	Dice una frase con los ajustes actuales de su voz
+Defaults	Restablecer
+MAIN >	PRINCIPAL >
+Her voice's pitch, the same as Settings > VOICE > Pitch	Tono de su voz, igual que en Ajustes > VOZ > Tono
+Her voice itself. Its pitch is Settings > VOICE > Pitch, and they move together.	Su voz principal. Comparte el tono de Ajustes > VOZ > Tono.
+Delay	Retardo
+Out of the box a little higher, just behind her.	Por defecto, algo más aguda y ligeramente retrasada.
+Out of the box lower, just behind her.	Por defecto, más grave y ligeramente retrasada.
+Tiny	Diminuta
+Small	Pequeña
+Small+	Pequeña+
+Medium	Mediana
+Medium+	Mediana+
+Large	Grande
+Large+	Grande+
+Huge	Enorme
+Huge+	Enorme+
+Giant	Gigante
+Never	Nunca
+Rarely	Rara vez
+Sometimes	A veces
+Often	A menudo
+Quick	Breve
+Long	Larga
+Restless	Inquieta
+Short	Corta
+Mute	Silencio
+Normal	Normal
+Auto	Auto
+OK	Aceptar
+Say something to Capri	Escribe algo a Capri
+Open Capri Mainframe	Abrir panel de Capri
+Move	Mover
+Hide	Ocultar
+Show	Mostrar
+Install Capri	Instalar Capri
+Remove Capri	Desinstalar Capri
+INSTALL CAPRI	INSTALAR CAPRI
+REMOVE CAPRI	DESINSTALAR CAPRI
+See you around.	Hasta pronto.
+Unofficial\nDesktop Mate!	¡Compañera de\nescritorio!
+Skipping it…	Omitiendo…
+Open apps, games and sites	Abrir aplicaciones, juegos y webs
+Music, media and volume	Música, multimedia y volumen
+Shortcuts (screenshots, Game Bar, captions, Discord mute)	Atajos (capturas, Game Bar, subtítulos y Discord)
+Close and switch apps and tabs	Cerrar y cambiar aplicaciones y pestañas
+Shut down, restart, sleep, lock and sign out	Apagar, reiniciar, suspender, bloquear y cerrar sesión
+Use your mouse and keyboard for jobs	Usar ratón y teclado para tareas
+Send, post and delete what you asked for	Enviar, publicar y borrar lo que pidas
+Pay, buy and book	Pagar, comprar y reservar
+Things your request didn't mention	Acciones que no has pedido
+Type passwords and card numbers	Escribir contraseñas y números de tarjeta
+Listen for "Hey Capri"	Escuchar «Hey Capri»
+On: she opens them when you ask. Off: she asks first.	Sí: los abre cuando lo pides. No: pregunta antes.
+On: she plays music and sets the volume. Off: she asks first.	Sí: pone música y ajusta el volumen. No: pregunta antes.
+On: she presses them for you. Off: she asks first.	Sí: pulsa los atajos. No: pregunta antes.
+On: she switches and closes them. Off: she asks first.	Sí: cambia y cierra ventanas. No: pregunta antes.
+On: she does it as soon as you ask. Off: she asks first.	Sí: lo hace cuando lo pides. No: pregunta antes.
+On: she clicks and types in your apps. Off: she asks first.	Sí: pulsa y escribe en tus aplicaciones. No: pregunta antes.
+On: she sends it without checking again. Off: she asks first.	Sí: lo envía sin volver a preguntar. No: pregunta antes.
+On: she pays and books without checking. Off: she asks first.	Sí: paga y reserva sin preguntar. No: pregunta antes.
+On: she does the extra steps a job needs. Off: she asks first.	Sí: realiza los pasos adicionales necesarios. No: pregunta antes.
+On: she types the ones your job gives her. Off: you type them.	Sí: escribe los datos facilitados para la tarea. No: los escribes tú.
+On: she listens on this PC for her name. Off: she doesn't.	Sí: escucha su nombre en este PC. No: no escucha.
+Lockdown	Bloqueo
+Guarded	Protegido
+Trusted	Confianza
+Custom	Personalizado
+Everything is off: she asks first before she does anything on your PC.	Todo desactivado: pregunta antes de actuar en tu PC.
+She opens apps and sites, plays music and presses shortcuts, and asks first for the rest.	Abre aplicaciones y webs, pone música y pulsa atajos. Pregunta para lo demás.
+She does what you ask, and asks first before paying or anything you didn't mention.	Hace lo que pides. Pregunta antes de pagar o realizar acciones no mencionadas.
+Everything is on: she never asks, types passwords and card numbers, and listens for "Hey Capri".	Todo activado: no pregunta, escribe contraseñas y tarjetas y escucha «Hey Capri».
+Your own mix. Pick a preset to start again from it.	Tu combinación. Elige un perfil para volver a sus valores.
+She asks first before everything.	Pregunta antes de cualquier acción.
+Apps, music, shortcuts. Asks for the rest.	Aplicaciones, música y atajos. Pregunta lo demás.
+Asks before paying or what you didn't say.	Pregunta para pagos y acciones no pedidas.
+She never asks, and listens for Hey Capri.	No pregunta y escucha «Hey Capri».
+Your own mix of toggles.	Tu propia combinación de opciones.
+Right-click for her menu.	Haz clic derecho para abrir su menú.
+OPTIONS	OPCIONES
+Add a desktop shortcut	Crear acceso directo en el escritorio
+Open Capri when finished	Abrir Capri al terminar
+Your saved position and size will be kept.	Se conservarán su posición y tamaño.
+Remove the app and its shortcuts for this Windows user.	Desinstala Capri y sus accesos directos de este usuario de Windows.
+Quit Capri from the tray before continuing.	Cierra Capri desde la bandeja antes de continuar.
+Making a little room for Capri…	Preparando un sitio para Capri…
+Capri could not finish. Your files are still here.	Capri no pudo terminar. Tus archivos siguen aquí.
+Starting the download…	Iniciando descarga…
+Checking the download…	Comprobando descarga…
+Unpacking…	Extrayendo…
+SPEECH MODEL	MODELO DE VOZ
+This may take some time. For a better sounding, faster voice, get an API key.	Puede tardar. Opcionalmente puedes usar una API para obtener otra voz.
+Skip	Omitir
+Installing…	Instalando…
+Couldn't install the local speech model	No se pudo instalar el modelo de voz local
+Capri is installed. Get it later in Capri Mainframe, or add an API key.	Capri está instalada. Descarga la voz después desde su panel o añade una clave de API.
+Finish	Terminar
+Installing the local speech model	Instalando el modelo de voz local
+This may take some time	Puede tardar un poco
+Capri has been removed.	Capri se ha desinstalado.
+Capri couldn't install	No se pudo instalar Capri
+Capri could not be removed	No se pudo desinstalar Capri
+Capri couldn't update	No se pudo actualizar Capri
+The update command is invalid.	El comando de actualización no es válido.
+Capri is still closing. Try the update again.	Capri se está cerrando. Vuelve a intentar la actualización.
+Capri updated but couldn't restart. Open her from the Start menu.	Capri se ha actualizado, pero no pudo reiniciarse. Ábrela desde Inicio.
+Quit Capri from her tray menu, then install again.	Cierra Capri desde su menú de la bandeja y vuelve a instalarla.
+The local speech model is missing files after installing.	Faltan archivos del modelo de voz tras la instalación.
+The download keeps stopping. Check your connection.	La descarga se interrumpe. Comprueba tu conexión.
+The download came down damaged. Try again from Capri Mainframe.	La descarga está dañada. Reinténtalo desde el panel de Capri.
+The download is missing files.	Faltan archivos en la descarga.
+The uninstaller is still open. Close it and try removing Capri again.	El desinstalador sigue abierto. Ciérralo y vuelve a intentarlo.
+Downloading	Descargando
+Checking	Comprobando
+Unpacking	Extrayendo
+Cancelled. It picks up where it left off.	Cancelado. Continuará desde donde se quedó.
+Free voice, runs on your PC.	Voz gratis que funciona en tu PC.
+Her own	La suya
+Bright	Alegre
+Sly	Pícara
+Sharp	Aguda
+Use CPU for HD (slower)	Usar CPU para HD (más lento)
+Good morning, choom.	Buenos días, choom.
+Isn't it late, choom?	¿No es un poco tarde, choom?
+Miss me, choom?	¿Me echabas de menos, choom?
+Voice link online. Miss me, choom?	Voz conectada. ¿Me echabas de menos, choom?
+Night night.	Que descanses.
+Finally. Hi.	Por fin. Hola.
+There you are.	Ahí estás.
+Knew you couldn't resist me.	Sabía que no podrías resistirte.
+Oh good, you're alive.	Ah, bien, sigues ahí.
+Took you long enough.	Ya era hora.
+I'm back, choom.	Ya estoy aquí, choom.
+Water	Agua
+Stretch	Estirarse
+Look away	Descansar la vista
+Sleep nudge	Hora de dormir
+Meals	Comidas
+Game break	Pausa de juego
+Bored	Aburrimiento
+Events	Eventos
+Chatty	Charladora
+Checking for updates...	Buscando actualizaciones...
+You're up to date.	Tienes la última versión.
+English	Inglés
+Bring to this screen	Traer a esta pantalla
+Go to the next screen	Ir a la siguiente pantalla
+Stand up	Ponerse de pie
+Sit here	Sentarse aquí
+Let go	Soltarse
+Hang here	Colgarse aquí
+Sit up	Incorporarse
+Lie down	Tumbarse
+Wake up	Despertar
+Go to sleep	Dormirse
+Help page	Página de ayuda
+Join the Discord	Unirse a Discord
+Copy error details	Copiar detalles del error
+Hide for now	Ocultar por ahora
+Open the player	Abrir el reproductor
+Turn off mini player	Desactivar minirreproductor
+Capri · Double-click to restore	Capri · Doble clic para mostrar
+Capri · Hop off from this menu	Capri · Bájala desde este menú
+Capri is riding your cursor	Capri va montada en tu cursor
+Right-click her tray icon, then choose Move and Hop off.	Haz clic derecho en su icono de la bandeja y elige Mover y Bajarse.
+Paste your ElevenLabs key, then press Connect.	Pega tu clave de ElevenLabs y pulsa Conectar.
+Slow? Press Free key for a free NVIDIA key.	¿Va lento? Obtén una clave gratuita de NVIDIA.
+Capri is replying slowly	Capri tarda en responder
+Her brain runs on your PC, and open games share that power. For fast replies, click here, make a free NVIDIA key, then paste it in Capri Mainframe under BRAIN and press Connect.	Su IA funciona en tu PC y comparte recursos con los juegos. Si prefieres una API, puedes crear una clave gratuita de NVIDIA, pegarla en IA y pulsar Conectar.
+DeepSeek can't see. Use an NVIDIA key to watch.	DeepSeek no ve la pantalla. Puedes usar una clave de NVIDIA.
+This brain can't see. Press Free key to fix.	Esta IA no ve la pantalla. Pulsa Clave gratis.
+Her eyes are in. She can see your screen now.	Su visión está lista. Ya puede ver tu pantalla.
+Couldn't capture the screen. I'll try again.	No he podido capturar la pantalla. Lo reintentaré.
+Watching your screen.	Mirando tu pantalla.
+Starting download	Iniciando descarga
+Nous Portal keys aren't supported yet.	Las claves de Nous Portal aún no son compatibles.
+That isn't a Gemini, OpenRouter, NVIDIA, OpenAI, Claude or DeepSeek key.	Esa clave no corresponde a Gemini, OpenRouter, NVIDIA, OpenAI, Claude ni DeepSeek.
+Checking key...	Comprobando clave...
+That key can't use any chat models.	Esa clave no permite usar modelos de conversación.
+Capri's free voice didn't download	No se pudo descargar la voz gratuita de Capri
+Getting Capri's ears	Descargando el reconocimiento de voz
+Her own ears are in.	El reconocimiento de voz está listo.
+Cancelled.	Cancelado.
+Getting Capri's free voice	Descargando la voz gratuita de Capri
+Not listening for "Hey Capri".	No está escuchando «Hey Capri».
+Get her free voice, or paste an ElevenLabs key.	Descarga la voz gratuita o pega una clave de ElevenLabs.
+Paste your Voice ID first.	Pega primero tu ID de voz.
+Reading your clip...	Leyendo tu grabación...
+Loading voices...	Cargando voces...
+HD on your CPU: slower, and 16 GB of RAM is best.	HD en tu CPU: más lento. Se recomiendan 16 GB de RAM.
+Listening for Capri; mic muted.	Escuchando «Capri»; micro silenciado.
+HD voice from your clip, on your graphics card. Games get her free voice.	Voz HD desde tu grabación, en la gráfica. En juegos usa la voz gratuita.
+HD voice on your graphics card. Games get her free voice.	Voz HD en la gráfica. En juegos usa la voz gratuita.
+Free voice, runs on your PC. Your voice only works with HD.	Voz gratis en tu PC. Tu propia voz necesita HD.
+Needs your Voice ID.	Necesita tu ID de voz.
+One sec, opening my ears.	Un momento, estoy preparando el micrófono.
+Hearing you...	Escuchando...
+Opening voice chat...	Abriendo conversación por voz...
+Voice chat on. Talk to her.	Voz activada. Ya puedes hablarle.
+Free voice chat off. Click the wave to listen again.	Conversación de voz detenida. Pulsa la onda para volver a escuchar.
+Mic muted. Voice chat is paused until you unmute.	Micro silenciado. La conversación queda en pausa hasta que lo actives.
+Voice chat resting. Talk and she'll pick up.	Conversación en espera. Habla y te escuchará.
+Mic muted. Click the mic to unmute.	Micro silenciado. Pulsa el micrófono para activarlo.
+Mic muted. Voice chat pauses once she stops talking.	Micro silenciado. La conversación se pausa cuando termine de hablar.
+Mic on. Talk and she'll pick up.	Micro activado. Habla y te escuchará.
+Your move.	Te toca.
+Your turn.	Tu turno.
+Capri is thinking.	Capri está pensando.
+You resigned.	Te has rendido.
+Taken back.	Movimiento deshecho.
+Checkmate	Jaque mate
+CHESS	AJEDREZ
+WHITE	BLANCAS
+BLACK	NEGRAS
+UNDO	DESHACER
+NEW GAME	NUEVA PARTIDA
+HINT	PISTA
+RESIGN	RENDIRSE
+PROMOTE TO	CORONAR COMO
+QUEEN	DAMA
+ROOK	TORRE
+BISHOP	ALFIL
+KNIGHT	CABALLO
+Hint after Capri's move.	Pide una pista cuando mueva Capri.
+Looking for a hint...	Buscando una pista...
+Couldn't finish that search. Try a level or new game.	No pude terminar la búsqueda. Prueba otro nivel o una partida nueva.
+Your move, choom.	Te toca, choom.
+CONNECT FOUR	CONECTA CUATRO
+ROCK PAPER SCISSORS	PIEDRA, PAPEL O TIJERA
+Round over. Press N for another.	Ronda terminada. Pulsa N para otra.
+Your point.	Punto para ti.
+My point.	Punto para mí.
+That column's full. Pick another.	Esa columna está llena. Elige otra.
+That square's taken. Pick another.	Esa casilla está ocupada. Elige otra.
+You win. Another round?	Has ganado. ¿Otra ronda?
+Capri wins. Another round?	Gana Capri. ¿Otra ronda?
+Draw. Rematch?	Empate. ¿Revancha?
+Your turn. You're X, Capri is O.	Te toca. Tú eres X y Capri es O.
+ROCK	PIEDRA
+PAPER	PAPEL
+SCISSORS	TIJERA
+PLAY AGAIN  [N]	OTRA PARTIDA  [N]
+ESC  CLOSE	ESC  CERRAR
+ESC STOPS ME	ESC ME DETIENE
+TYPE	ESCRIBIR
+TALK	HABLAR
+MUTED	SILENCIO
+Talk to Capri	Hablar con Capri
+Wander around	Pasear libremente
+Dance	Bailar
+Sit on windows	Sentarse en ventanas
+Let's get to know each other, choom. What should I call you? Say skip to skip one, or stop to stop.	Vamos a conocernos, choom. ¿Cómo quieres que te llame? Di «saltar» para pasar una pregunta o «parar» para terminar.
+What should I call you?	¿Cómo quieres que te llame?
+What are your pronouns? Like she/her, he/him or they/them.	¿Cuáles son tus pronombres? Por ejemplo, ella, él o elle.
+What are you into? Games, music, shows, anything.	¿Qué te gusta? Juegos, música, series, lo que quieras.
+Get to know me in my Settings asks again any time.	Puedes repetirlo cuando quieras desde Ajustes > Conocerme.
+Choom it is.	Pues choom, entonces.
+Got it.	Entendido.
+No worries, choom.	Sin problema, choom.
+All good, choom.	Todo bien, choom.
+No worries.	Sin problema.
+What you told me is in my notes, me.md.	He guardado lo que me has contado en mis notas, me.md.
+It's all in my notes now, me.md.	Ya está todo en mis notas, me.md.
+Thanks	Gracias
+Love that	Me encanta
+Have a sip of water, choom. I'll keep your spot.	Bebe un poco de agua, choom. Te guardo el sitio.
+Water break. Even you need a refill.	Pausa para beber. Tú también necesitas recargar.
+Unfold yourself a little. Those legs still work.	Estírate un poco. Esas piernas aún funcionan.
+Tiny stretch break. I'll be right here.	Una pequeña pausa para estirarte. Aquí te espero.
+Give your eyes 20 seconds looking away from the screen. I'll survive.	Descansa la vista 20 segundos mirando fuera de la pantalla. Sobreviviré.
+Look at something far away for 20 seconds. Yes, even farther than me.	Mira algo lejano durante 20 segundos. Sí, más lejos que yo.
+It's late, choom. Your bed misses you.	Es tarde, choom. Tu cama te echa de menos.
+Been here since before lunch. Go grab something to eat.	Llevas aquí desde antes de comer. Ve a buscar algo de comida.
+Food break. Can't run that brain on empty.	Pausa para comer. Esa cabeza necesita combustible.
+Long session. Take a little break when you've got a good spot.	Llevas una buena sesión. Descansa un poco cuando puedas.
+You've been at that game a while. Stretch those hands when you can.	Llevas un buen rato jugando. Estira las manos cuando puedas.
+So boreddd.	Me aburrooo.
+I've counted your desktop icons twice now.	Ya he contado dos veces los iconos de tu escritorio.
+One of my minds is making its own entertainment. Worrying.	Una de mis mentes se está entreteniendo por su cuenta. Preocupante.
+Tiny gremlin. Big boredom.	Gremlin pequeño. Aburrimiento enorme.
+Fine. I'll entertain myself.	Vale. Me entretendré sola.
+Cool. Cool cool cool.	Bien. Muy bien, muy bien.
+Gaming Mode's armed. I'll dock as soon as a game's up.	Modo juego preparado. Me colocaré en cuanto abras un juego.
+Gaming Mode's armed. I'll watch as soon as a game's up.	Modo juego preparado. Miraré en cuanto abras un juego.
+That game's in exclusive full screen, so I can't show over it. Switch it to borderless and I'll dock top-left.	El juego usa pantalla completa exclusiva. Cámbialo a ventana sin bordes y me colocaré arriba a la izquierda.
+Voice model file	Archivo de modelo de voz
+on your PC	en tu PC
+cloud	nube
+server	servidor
+Built-in	Integrada
+Any OpenAI-style server	Servidor compatible con OpenAI
+Number or clip, optional	Número o grabación (opcional)
+Reference ID, optional	ID de referencia (opcional)
+Voice ID or fish.audio link	ID de voz o enlace de fish.audio
+Paste your Fish Audio key	Pega tu clave de Fish Audio
+Paste your OpenAI key	Pega tu clave de OpenAI
+A Piper, Kokoro, Kitten or Pocket TTS model for sherpa-onnx, run with no server. Browse to its .tar.bz2 or .onnx. Pocket TTS copies a voice clip you pick.	Modelo Piper, Kokoro, Kitten o Pocket TTS para sherpa-onnx, sin servidor. Elige su .tar.bz2 o .onnx. Pocket TTS usa la voz de la grabación que elijas.
+Fish Speech running on your PC with tools/api_server.py. Voice is a reference ID you added to it, or blank.	Fish Speech en tu PC con tools/api_server.py. La voz es un ID de referencia que hayas añadido, o puede dejarse vacía.
+Kokoro-FastAPI running on your PC, with voices like af_heart, af_bella and am_adam.	Kokoro-FastAPI en tu PC, con voces como af_heart, af_bella y am_adam.
+OpenAI's voices with your OpenAI key: marin, cedar, coral, alloy and more.	Voces de OpenAI con tu clave: marin, cedar, coral, alloy y otras.
+Any speech model you run whose server speaks OpenAI's speech API, like Qwen3-TTS through vLLM-Omni, AllTalk or LocalAI.	Cualquier modelo de voz cuyo servidor admita la API de voz de OpenAI, como Qwen3-TTS con vLLM-Omni, AllTalk o LocalAI.
+Fish Audio's voices.	Voces de Fish Audio.
+Paste a key from fish.audio, then make your own voice with Fish Audio's Voice Design and paste its link or ID.	Pega una clave de fish.audio, crea tu voz con Voice Design y pega su enlace o ID.
+Capri prohibits cloning or impersonating a living person's voice without explicit, informed consent or other valid authorization.	Capri prohíbe clonar o suplantar la voz de una persona viva sin consentimiento explícito e informado u otra autorización válida.
+Her voice is OFF. Pick another row under VOICE to hear her.	La voz está desactivada. Elige otra opción en VOZ para escucharla.
+1-9 or arrows + Enter  /  say top left, middle...	1-9 o flechas + Intro  /  arriba a la izquierda, centro...
+1-7 or arrows + Enter  /  say column 3...	1-7 o flechas + Intro  /  di «columna 3»...
+R / P / S or arrows + Enter  /  first to 3	R / P / S o flechas + Intro  /  al mejor de 3
+Her voices	Sus voces
+free	gratis
+Free	Gratis
+Capri's check-ins	Recordatorios de Capri
+Bored noticed	Aburrimiento atendido
+Bored ignored	Aburrimiento ignorado
+Edit the bullet lines under each heading to change what she says. Remove a bullet to stop using it, or all the bullets under a heading to silence that check-in. These lines stay on this PC.	Edita las frases bajo cada título para cambiar lo que dice. Elimina una frase para dejar de usarla, o todas las de un apartado para silenciarlo. Estas frases se guardan en este PC.
+Have Ollama?	¿Tienes Ollama?
+Open it, then press Refresh.	Ábrelo y pulsa Actualizar.
+Pick one.	Elige una IA.
+Only one brain runs at a time.	Solo se usa una a la vez.
+Listen for Capri.	Mantiene el micrófono abierto.
+Keep the mic open; say her name anywhere in your sentence.	Di su nombre en una frase.
+Stop and push to talk still work	Puedes detenerla o pulsar para hablar
+Her talk key.	Atajo para hablar.
+Click, press new keys, then Confirm	Haz clic, pulsa las nuevas teclas y confirma
+Her mute key.	Atajo para silenciar el micro.
+Her typing key.	Atajo para escribir.
+Her hide key.	Atajo para ocultarla.
+Her quiet key: she only talks when you talk to her until you press it again.	Solo responde cuando le hablas hasta que vuelvas a pulsar el atajo.
+Her push-to-talk key: hold it to talk to her, with a game in front too.	Mantén pulsado para hablar, también jugando.
+Click, press a key or a mouse button, then Confirm	Haz clic, pulsa una tecla o un botón del ratón y confirma
+Her Gaming Mode key: she reacts to your game until you close it.	Reacciona a tu juego hasta que lo cierras.
+Mainframe size.	Tamaño del panel.
+Auto makes it bigger when Virtual Super Resolution or DSR shrinks a big desktop onto a smaller screen	Auto lo amplía cuando Virtual Super Resolution o DSR reduce un escritorio grande a una pantalla menor
+Remember what she sees.	Guarda durante tres horas lo que ve, aunque no lo comente.
+What she saw on your screen stays in her memory for three hours even when she said nothing about it, which uses a little more of your API	Consume algo más de API
+Lines of PC dialogue held in memory while watching together.	Líneas de diálogo que recuerda al mirar contigo.
+The oldest half becomes a note when Remember what she sees is on	La mitad más antigua se resume si activas Recordar lo que ve
+Memory size in tokens for Ollama and her built-in brain.	Memoria en tokens para Ollama y la IA integrada.
+Auto keeps her usual context size	Auto conserva el contexto habitual
+The longest reply she can give, in tokens.	Máximo de tokens por respuesta.
+Auto keeps to Replies above; 2K or 8K lets her run on.	Auto respeta Respuestas; 2K y 8K permiten ampliar.
+Jobs keep more room when they need it	Las tareas disponen de más espacio si lo necesitan
+Hide in full screen.	El modo juego tiene prioridad.
+Gaming Mode takes priority; a manual hide stays hidden	Si la ocultas manualmente, sigue oculta
+Mini player over full screen.	Funciona sobre ventanas sin bordes.
+Works over borderless windows; exclusive full screen cannot show overlays	La pantalla completa exclusiva no admite superposiciones
+Explore while I'm away.	Desplaza páginas del navegador o lector sin mover el ratón.
+Scrolls browser or reader pages without moving your mouse; your input stops her	Se detiene cuando vuelves
+Gaming Mode.	Reacciona al juego hasta que lo cierres.
+She reacts to your game until you close it. "Hey Capri, activate gaming mode" turns it on.	Di «Capri, activa el modo juego».
+Clip my games.	Mantiene vídeo y sonido recientes en memoria.
+Keeps recent game video and PC sound in memory; clips stay in Videos\Capri Clips on this PC	Los clips se guardan en Vídeos\Capri Clips en este PC
+Fast hands in games.	Con una clave de Claude juega usando Haiku, más rápido y económico.
+On a Claude key she plays games on Claude Haiku, which moves about three times faster and costs far less.	Si se atasca consulta tu modelo, o Sonnet si usabas Haiku.
+When she's stuck she asks the brain you picked, or Claude Sonnet if that's Haiku, and chat stays on the brain you picked	La conversación conserva tu modelo
+No Obsidian vaults found on this PC.	No se han encontrado bóvedas.
+Open one in Obsidian first, or Browse to a note.	Abre una en Obsidian o busca una nota.
+Key.	Clave.
+It goes only to this server, as a Bearer key	Solo se envía a este servidor, como clave Bearer
+Made your Fish Audio voice.	Voz de Fish Audio creada.
+Press Test to hear it.	Pulsa Probar para escucharla.
+Pocket TTS models copy this clip's voice.	Pocket TTS reproduce la voz de esta grabación.
+Unpacked.	Extraído.
+What she does on your PC without asking.	Qué puede hacer sin preguntar.
+With a toggle off she asks first, and does it when you say yes.	Si desactivas una opción, te pedirá permiso antes de actuar.
+She glances at your screen and comments.	Mira tu pantalla y comenta.
+Costs a little on a paid brain.	Con una IA de pago tiene un pequeño coste.
+She talks about your game as you play.	Comenta mientras juegas.
+Keeps the last two minutes of your game in memory.	Guarda los dos últimos minutos en memoria.
+Say clip that to save it.	Di «guarda un clip» para conservarlos.
+Off: she sounds as she always has.	Desactivado: voz habitual.
+On: every voice she has, ElevenLabs too.	Activado: se aplica a todas las voces, incluida ElevenLabs.
+Her voice itself.	Su voz principal.
+Its pitch is Settings > VOICE > Pitch, and they move together.	Comparte el tono de Ajustes > VOZ > Tono.
+On: she opens them when you ask.	Sí: los abre cuando lo pides.
+Off: she asks first.	No: pregunta antes.
+On: she plays music and sets the volume.	Sí: pone música y ajusta el volumen.
+On: she presses them for you.	Sí: pulsa los atajos.
+On: she switches and closes them.	Sí: cambia y cierra ventanas.
+On: she does it as soon as you ask.	Sí: lo hace cuando lo pides.
+On: she clicks and types in your apps.	Sí: pulsa y escribe en tus aplicaciones.
+On: she sends it without checking again.	Sí: lo envía sin volver a preguntar.
+On: she pays and books without checking.	Sí: paga y reserva sin preguntar.
+On: she does the extra steps a job needs.	Sí: realiza los pasos adicionales necesarios.
+On: she types the ones your job gives her.	Sí: escribe los datos facilitados para la tarea.
+Off: you type them.	No: los escribes tú.
+On: she listens on this PC for her name.	Sí: escucha su nombre en este PC.
+Off: she doesn't.	No: no escucha.
+Your own mix.	Tu combinación.
+Pick a preset to start again from it.	Elige un perfil para volver a sus valores.
+Apps, music, shortcuts.	Aplicaciones, música y atajos.
+Asks for the rest.	Pregunta lo demás.
+Capri could not finish.	Capri no pudo terminar.
+Your files are still here.	Tus archivos siguen aquí.
+This may take some time.	Puede tardar.
+For a better sounding, faster voice, get an API key.	Opcionalmente puedes usar una API para obtener otra voz.
+Capri is installed.	Capri está instalada.
+Get it later in Capri Mainframe, or add an API key.	Descarga la voz después desde su panel o añade una clave de API.
+Capri is still closing.	Capri se está cerrando.
+Try the update again.	Vuelve a intentar la actualización.
+Capri updated but couldn't restart.	Capri se ha actualizado, pero no pudo reiniciarse.
+Open her from the Start menu.	Ábrela desde Inicio.
+The download keeps stopping.	La descarga se interrumpe.
+Check your connection.	Comprueba tu conexión.
+The download came down damaged.	La descarga está dañada.
+Try again from Capri Mainframe.	Reinténtalo desde el panel de Capri.
+The uninstaller is still open.	El desinstalador sigue abierto.
+Close it and try removing Capri again.	Ciérralo y vuelve a intentarlo.
+It picks up where it left off.	Continuará desde donde se quedó.
+Voice link online.	Voz conectada.
+Finally.	Por fin.
+Hi.	Hola.
+Slow?	¿Va lento?
+Press Free key for a free NVIDIA key.	Obtén una clave gratuita de NVIDIA.
+Her brain runs on your PC, and open games share that power.	Su IA funciona en tu PC y comparte recursos con los juegos.
+For fast replies, click here, make a free NVIDIA key, then paste it in Capri Mainframe under BRAIN and press Connect.	Si prefieres una API, puedes crear una clave gratuita de NVIDIA, pegarla en IA y pulsar Conectar.
+DeepSeek can't see.	DeepSeek no ve la pantalla.
+Use an NVIDIA key to watch.	Puedes usar una clave de NVIDIA.
+This brain can't see.	Esta IA no ve la pantalla.
+Press Free key to fix.	Pulsa Clave gratis.
+Her eyes are in.	Su visión está lista.
+She can see your screen now.	Ya puede ver tu pantalla.
+Couldn't capture the screen.	No he podido capturar la pantalla.
+I'll try again.	Lo reintentaré.
+HD voice from your clip, on your graphics card.	Voz HD desde tu grabación, en la gráfica.
+Games get her free voice.	En juegos usa la voz gratuita.
+HD voice on your graphics card.	Voz HD en la gráfica.
+Your voice only works with HD.	Tu propia voz necesita HD.
+Voice chat on.	Voz activada.
+Talk to her.	Ya puedes hablarle.
+Free voice chat off.	Conversación de voz detenida.
+Click the wave to listen again.	Pulsa la onda para volver a escuchar.
+Mic muted.	Micro silenciado.
+Voice chat is paused until you unmute.	La conversación queda en pausa hasta que lo actives.
+Voice chat resting.	Conversación en espera.
+Talk and she'll pick up.	Habla y te escuchará.
+Click the mic to unmute.	Pulsa el micrófono para activarlo.
+Voice chat pauses once she stops talking.	La conversación se pausa cuando termine de hablar.
+Mic on.	Micro activado.
+Couldn't finish that search.	No pude terminar la búsqueda.
+Try a level or new game.	Prueba otro nivel o una partida nueva.
+Round over.	Ronda terminada.
+Press N for another.	Pulsa N para otra.
+That column's full.	Esa columna está llena.
+Pick another.	Elige otra.
+That square's taken.	Esa casilla está ocupada.
+You win.	Has ganado.
+Another round?	¿Otra ronda?
+Capri wins.	Gana Capri.
+Draw.	Empate.
+Rematch?	¿Revancha?
+You're X, Capri is O.	Tú eres X y Capri es O.
+Let's get to know each other, choom.	Vamos a conocernos, choom.
+Say skip to skip one, or stop to stop.	Di «saltar» para pasar una pregunta o «parar» para terminar.
+What are your pronouns?	¿Cuáles son tus pronombres?
+Like she/her, he/him or they/them.	Por ejemplo, ella, él o elle.
+What are you into?	¿Qué te gusta?
+Games, music, shows, anything.	Juegos, música, series, lo que quieras.
+Have a sip of water, choom.	Bebe un poco de agua, choom.
+I'll keep your spot.	Te guardo el sitio.
+Water break.	Pausa para beber.
+Even you need a refill.	Tú también necesitas recargar.
+Unfold yourself a little.	Estírate un poco.
+Those legs still work.	Esas piernas aún funcionan.
+Tiny stretch break.	Una pequeña pausa para estirarte.
+I'll be right here.	Aquí te espero.
+Give your eyes 20 seconds looking away from the screen.	Descansa la vista 20 segundos mirando fuera de la pantalla.
+I'll survive.	Sobreviviré.
+Look at something far away for 20 seconds.	Mira algo lejano durante 20 segundos.
+Yes, even farther than me.	Sí, más lejos que yo.
+It's late, choom.	Es tarde, choom.
+Your bed misses you.	Tu cama te echa de menos.
+Been here since before lunch.	Llevas aquí desde antes de comer.
+Go grab something to eat.	Ve a buscar algo de comida.
+Food break.	Pausa para comer.
+Can't run that brain on empty.	Esa cabeza necesita combustible.
+Long session.	Llevas una buena sesión.
+Take a little break when you've got a good spot.	Descansa un poco cuando puedas.
+You've been at that game a while.	Llevas un buen rato jugando.
+Stretch those hands when you can.	Estira las manos cuando puedas.
+One of my minds is making its own entertainment.	Una de mis mentes se está entreteniendo por su cuenta.
+Worrying.	Preocupante.
+Tiny gremlin.	Gremlin pequeño.
+Big boredom.	Aburrimiento enorme.
+Fine.	Vale.
+I'll entertain myself.	Me entretendré sola.
+Cool.	Bien.
+Cool cool cool.	Muy bien, muy bien.
+Gaming Mode's armed.	Modo juego preparado.
+I'll dock as soon as a game's up.	Me colocaré en cuanto abras un juego.
+I'll watch as soon as a game's up.	Miraré en cuanto abras un juego.
+That game's in exclusive full screen, so I can't show over it.	El juego usa pantalla completa exclusiva.
+Switch it to borderless and I'll dock top-left.	Cámbialo a ventana sin bordes y me colocaré arriba a la izquierda.
+A Piper, Kokoro, Kitten or Pocket TTS model for sherpa-onnx, run with no server.	Modelo Piper, Kokoro, Kitten o Pocket TTS para sherpa-onnx, sin servidor.
+Browse to its .tar.bz2 or .onnx.	Elige su .tar.bz2 o .onnx.
+Pocket TTS copies a voice clip you pick.	Pocket TTS usa la voz de la grabación que elijas.
+Fish Speech running on your PC with tools/api_server.py.	Fish Speech en tu PC con tools/api_server.py.
+Voice is a reference ID you added to it, or blank.	La voz es un ID de referencia que hayas añadido, o puede dejarse vacía.
+Her voice is OFF.	La voz está desactivada.
+Pick another row under VOICE to hear her.	Elige otra opción en VOZ para escucharla.
