@@ -1349,10 +1349,9 @@ namespace CapriDesktop
 
         internal void SizeMainframe(int size)
         {
-            // Rendering-test entry point: let the simulated canvas exceed a small CI desktop.
+            // Rendering-test entry point: compare controls with their intended canvas, not an OS-clamped viewport.
             layoutProbe = true;
             frameSize.Slide(Math.Max(0, Array.IndexOf(FrameSizes, size)));
-            Arrange(expanded);
         }
 
         // Every control's own type grown or shrunk by this much, children first, so each reads its parent's before that changes.
@@ -1607,13 +1606,7 @@ namespace CapriDesktop
             updateNote.MaximumSize = new Size(Scaled(328), 0);
             if (keysNote != null) keysNote.MaximumSize = new Size(Scaled(328), 0);
             if (paged) pageView = Fit();
-            Size canvas = new Size(Scaled(paged ? Wide + Column : Wide), Scaled(paged ? pageView : Tall + shift + below - fold));
-            if (layoutProbe)
-            {
-                MinimumSize = MaximumSize = Size.Empty;
-                MaximumSize = MinimumSize = canvas;
-            }
-            ClientSize = canvas;
+            ClientSize = new Size(Scaled(paged ? Wide + Column : Wide), Scaled(paged ? pageView : Tall + shift + below - fold));
             ScrollPage(pageScroll);
             bool scrolls = paged && pageView < PageNow;
             topRim.Visible = bottomRim.Visible = scrolls;
@@ -1980,13 +1973,20 @@ namespace CapriDesktop
             {
                 Control control = entry.Key;
                 if (Folded(control) || !control.Visible || (control is Label && control.Text.Length == 0)) continue;
-                if (!page.Contains(control.Bounds)) return control.Text.Length > 0 ? control.Text : control.AccessibleName;
+                if (!page.Contains(control.Bounds)) return (control.Text.Length > 0 ? control.Text : control.AccessibleName) + " " + control.Bounds + " in " + page;
             }
             return null;
         }
 
         // The whole settings page, scrolled or not, in the window's own px.
-        private Rectangle PageArea { get { return paged ? new Rectangle(0, -Scaled(pageScroll), ClientSize.Width, Math.Max(ClientSize.Height, Scaled(PageNow))) : ClientRectangle; } }
+        private Rectangle PageArea
+        {
+            get
+            {
+                int width = layoutProbe ? Scaled(paged ? Wide + Column : Wide) : ClientSize.Width;
+                return paged ? new Rectangle(0, -Scaled(pageScroll), width, Math.Max(ClientSize.Height, Scaled(PageNow))) : new Rectangle(0, 0, width, ClientSize.Height);
+            }
+        }
 
         // Settings on a short screen: how much shows (or whole) and whether the rims hold her frame together.
         internal string ScrollStatus { get { return (paged && pageView < PageNow ? pageView + " tall" : "whole") + " | " + (topRim.Visible && bottomRim.Visible ? "rims" : "-"); } }
