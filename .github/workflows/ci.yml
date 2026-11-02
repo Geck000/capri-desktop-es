@@ -22,7 +22,7 @@ jobs:
       - name: Build and smoke test
         shell: pwsh
         run: ./ci/build-windows.ps1 -OutputDirectory out/windows -SmokeTest -SmokeSeconds 900
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7.0.2
         if: always()
         with:
           name: smoke-windows
@@ -50,7 +50,7 @@ jobs:
           cat smoke/linux/smoke-test.txt
           if grep -q '^FAIL' smoke/linux/smoke-test.txt; then exit 1; fi
           test "$(grep -c '^PASS' smoke/linux/smoke-test.txt)" -ge 20
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7.0.2
         if: always()
         with:
           name: smoke-linux
@@ -73,7 +73,7 @@ jobs:
           cat smoke/mac/smoke-test.txt
           if grep -q '^FAIL' smoke/mac/smoke-test.txt; then exit 1; fi
           test "$(grep -c '^PASS' smoke/mac/smoke-test.txt)" -ge 20
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7.0.2
         if: always()
         with:
           name: smoke-mac
