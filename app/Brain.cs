@@ -3112,12 +3112,12 @@ namespace CapriDesktop
         internal const string AskInto = "What are you into? Games, music, shows, anything.";
         internal const string Again = "Get to know me in my Settings asks again any time.";
         // A hello or an okay before they answer: she asks again.
-        private static readonly Regex Nudge = new Regex(@"^(hi|hey|hello|heya|hiya|yo|sup|wassup|what'?s up|howdy|gm|good (morning|afternoon|evening)|ok|okay|k|kk|sure|yes|yeah|yep|alright|cool|go on|go ahead|ready|let'?s go|let'?s do (it|this))(\s+(there|capri|choom))?\W*$", RegexOptions.IgnoreCase);
-        private static readonly Regex Pass = new Regex(@"^(skip|pass|next|no|nah|nope|none|nothing|not much|not really|idk|i don'?t know|dunno|not sure|rather not|i'?d rather not|prefer not to say|no thanks|no thank you|not telling)(\s+(it|this|that|one|this one|that one|please|pls|thanks|really|much|tbh|honestly|lol))*\W*$", RegexOptions.IgnoreCase);
-        private static readonly Regex Halt = new Regex(@"^(stop|quit|cancel|enough|end|done|not now|later|maybe later|another time|skip (all|everything|it all|them all|the rest)|no more( questions)?|that'?s enough|stop asking( me)?( questions)?)(\s+(please|pls|thanks))?\W*$", RegexOptions.IgnoreCase);
-        private static readonly Regex Called = new Regex(@"^(?:(?:you can |u can |just |please |pls |my friends |friends |people |everyone |most people )?call me|my (?:first |nick)?name(?:'s| is)|(?:the )?name'?s|i'?m|i am|it'?s|it is|they call me|i go by|people call me|everyone calls me)\s+(?<n>.+)$", RegexOptions.IgnoreCase);
-        private static readonly Regex Into = new Regex(@"^(?:i'?m (?:really |mostly |super )?into|i am (?:really |mostly )?into|into|i (?:really )?(?:like|love|enjoy)|mostly|probably|honestly|um+|uh+)[\s,:]+", RegexOptions.IgnoreCase);
-        private static readonly Regex Asked = new Regex(@"^\W*(what|who|how|why|when|where|which|can|could|would|will|should|do|does|did|is|are|r u|have you)\b.*\?\W*$", RegexOptions.IgnoreCase);
+        private static readonly Regex Nudge = new Regex(@"^(hola|buenas|buenos días|buenas tardes|buenas noches|vale|sí|si|adelante|listo|lista|hi|hey|hello|heya|hiya|yo|sup|wassup|what'?s up|howdy|gm|good (morning|afternoon|evening)|ok|okay|k|kk|sure|yes|yeah|yep|alright|cool|go on|go ahead|ready|let'?s go|let'?s do (it|this))(\s+(there|capri|choom))?\W*$", RegexOptions.IgnoreCase);
+        private static readonly Regex Pass = new Regex(@"^(saltar|salta|omitir|omite|pasar|paso|siguiente|no sé|no se|no lo sé|prefiero no decirlo|no gracias|skip|pass|next|no|nah|nope|none|nothing|not much|not really|idk|i don'?t know|dunno|not sure|rather not|i'?d rather not|prefer not to say|no thanks|no thank you|not telling)(\s+(it|this|that|one|this one|that one|please|pls|thanks|really|much|tbh|honestly|lol))*\W*$", RegexOptions.IgnoreCase);
+        private static readonly Regex Halt = new Regex(@"^(para|parar|basta|detente|terminar|termina|cancelar|cancela|ahora no|más tarde|mas tarde|no más preguntas|stop|quit|cancel|enough|end|done|not now|later|maybe later|another time|skip (all|everything|it all|them all|the rest)|no more( questions)?|that'?s enough|stop asking( me)?( questions)?)(\s+(please|pls|thanks))?\W*$", RegexOptions.IgnoreCase);
+        private static readonly Regex Called = new Regex(@"^(?:llámame|llamame|me llamo|mi nombre es|soy|puedes llamarme|(?:you can |u can |just |please |pls |my friends |friends |people |everyone |most people )?call me|my (?:first |nick)?name(?:'s| is)|(?:the )?name'?s|i'?m|i am|it'?s|it is|they call me|i go by|people call me|everyone calls me)\s+(?<n>.+)$", RegexOptions.IgnoreCase);
+        private static readonly Regex Into = new Regex(@"^(?:me gusta|me gustan|me encanta|me encantan|me interesa|me interesan|i'?m (?:really |mostly |super )?into|i am (?:really |mostly )?into|into|i (?:really )?(?:like|love|enjoy)|mostly|probably|honestly|um+|uh+)[\s,:]+", RegexOptions.IgnoreCase);
+        private static readonly Regex Asked = new Regex(@"^\W*(qué|que|quién|quien|cómo|como|por qué|cuándo|dónde|puedes|what|who|how|why|when|where|which|can|could|would|will|should|do|does|did|is|are|r u|have you)\b.*\?\W*$", RegexOptions.IgnoreCase);
         private int step = -1;
         private bool kept, loved;
         private string trouble;
@@ -3213,12 +3213,12 @@ namespace CapriDesktop
         // She/her, he/him and they/them however they're typed; anything else as they wrote it.
         internal static string Pronouns(string said)
         {
-            string text = Regex.Replace((said ?? "").Trim().ToLowerInvariant(), @"^(my pronouns are|my pronouns|pronouns are|pronouns|i use|i go by|i'?m|i am|it'?s|use)[\s:]+", "");
+            string text = Regex.Replace((said ?? "").Trim().ToLowerInvariant(), @"^(mis pronombres son|mis pronombres|uso|soy|my pronouns are|my pronouns|pronouns are|pronouns|i use|i go by|i'?m|i am|it'?s|use)[\s:]+", "");
             text = Regex.Replace(Regex.Replace(text, @"^an? ", ""), @"\s*/\s*", "/").Trim(' ', '.', '!', ',');
-            if (Regex.IsMatch(text, @"^(she|her|she/her|she/hers|she/her/hers|girl|woman|female|f|fem|feminine)$")) return "she/her";
-            if (Regex.IsMatch(text, @"^(he|him|he/him|he/his|he/him/his|boy|man|guy|dude|male|m|masc|masculine)$")) return "he/him";
-            if (Regex.IsMatch(text, @"^(they|them|they/them|they/theirs|they/them/theirs|non-?binary|enby|nb)$")) return "they/them";
-            if (Regex.IsMatch(text, @"^(any|any pronouns|anything|whatever|all|any/all|all/any|don'?t (care|mind)|no preference|whatever works)$")) return "any pronouns";
+            if (Regex.IsMatch(text, @"^(ella|femenino|she|her|she/her|she/hers|she/her/hers|girl|woman|female|f|fem|feminine)$")) return "she/her";
+            if (Regex.IsMatch(text, @"^(él|el|masculino|he|him|he/him|he/his|he/him/his|boy|man|guy|dude|male|m|masc|masculine)$")) return "he/him";
+            if (Regex.IsMatch(text, @"^(elle|neutro|no binario|no binaria|they|them|they/them|they/theirs|they/them/theirs|non-?binary|enby|nb)$")) return "they/them";
+            if (Regex.IsMatch(text, @"^(cualquiera|cualquier pronombre|me da igual|sin preferencia|any|any pronouns|anything|whatever|all|any/all|all/any|don'?t (care|mind)|no preference|whatever works)$")) return "any pronouns";
             return text.Length > 40 ? text.Substring(0, 40).TrimEnd() : text;
         }
     }

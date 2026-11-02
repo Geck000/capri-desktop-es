@@ -193,7 +193,7 @@ namespace CapriDesktop
         {
             using (Bitmap scratch = new Bitmap(1, 1))
             using (Graphics graphics = Graphics.FromImage(scratch))
-                return graphics.MeasureString(new string('M', 20), font, PointF.Empty, StringFormat.GenericTypographic).Width / 20f;
+                return graphics.MeasureString(I18n.T(new string('M', 20)), font, PointF.Empty, StringFormat.GenericTypographic).Width / 20f;
         }
 
         internal static GraphicsPath Plate(RectangleF box, float cut, float tipX, float tipY, float tail, bool both = false)
@@ -283,15 +283,15 @@ namespace CapriDesktop
         // any other line, which draws exactly as before.
         internal static float Draw(Graphics graphics, string text, Font font, Brush brush, float x, float y)
         {
-            if (!Burmese(text)) { graphics.DrawString(text, font, brush, x, y, StringFormat.GenericTypographic); return x; }
+            if (!Burmese(text)) { graphics.DrawString(I18n.T(text), font, brush, x, y, StringFormat.GenericTypographic); return x; }
             using (Font burmese = Myanmar(font))
             {
                 float lift = Ascent(burmese) - Ascent(font);
                 foreach (string piece in Pieces(text))
                 {
                     Font used = Myanmar(piece[0]) ? burmese : font;
-                    graphics.DrawString(piece, used, brush, x, used == font ? y : y - lift, StringFormat.GenericTypographic);
-                    x += graphics.MeasureString(piece, used, PointF.Empty, Spaced).Width;
+                    graphics.DrawString(I18n.T(piece), used, brush, x, used == font ? y : y - lift, StringFormat.GenericTypographic);
+                    x += graphics.MeasureString(I18n.T(piece), used, PointF.Empty, Spaced).Width;
                 }
             }
             return x;
@@ -300,7 +300,7 @@ namespace CapriDesktop
         private static float Mixed(Graphics graphics, string text, Font font, Font burmese)
         {
             float width = 0;
-            foreach (string piece in Pieces(text)) width += graphics.MeasureString(piece, Myanmar(piece[0]) ? burmese : font, PointF.Empty, Spaced).Width;
+            foreach (string piece in Pieces(text)) width += graphics.MeasureString(I18n.T(piece), Myanmar(piece[0]) ? burmese : font, PointF.Empty, Spaced).Width;
             return width;
         }
 
@@ -344,11 +344,11 @@ namespace CapriDesktop
                             ruler = Graphics.FromImage(rulerPage);
                             ruler.TextRenderingHint = TextRenderingHint.AntiAliasGridFit;
                             rulerFont = Mono(14f, FontStyle.Regular, GraphicsUnit.Pixel, "क");
-                            rulerColumn = ruler.MeasureString(new string('M', 20), rulerFont, PointF.Empty, StringFormat.GenericTypographic).Width / 20f;
+                            rulerColumn = ruler.MeasureString(I18n.T(new string('M', 20)), rulerFont, PointF.Empty, StringFormat.GenericTypographic).Width / 20f;
                             rulerBurmese = Myanmar(rulerFont);
                         }
                         // A shade over, since hinting at other sizes can draw a little wider.
-                        width = (Burmese(word) ? Mixed(ruler, word, rulerFont, rulerBurmese) : ruler.MeasureString(word, rulerFont, PointF.Empty, StringFormat.GenericTypographic).Width) / rulerColumn * 1.03;
+                        width = (Burmese(word) ? Mixed(ruler, word, rulerFont, rulerBurmese) : ruler.MeasureString(I18n.T(word), rulerFont, PointF.Empty, StringFormat.GenericTypographic).Width) / rulerColumn * 1.03;
                         if (measured.Count > 4000) measured.Clear();
                         measured[word] = width;
                     }
@@ -930,7 +930,7 @@ namespace CapriDesktop
         private static void DrawLabel(Graphics graphics, string label, Font font, Rectangle box, Color colour)
         {
             Rectangle ink = Ink(font, label);
-            using (Brush brush = new SolidBrush(colour)) graphics.DrawString(label, font, brush, box.Left - ink.Left, box.Top - ink.Top, StringFormat.GenericTypographic);
+            using (Brush brush = new SolidBrush(colour)) graphics.DrawString(I18n.T(label), font, brush, box.Left - ink.Left, box.Top - ink.Top, StringFormat.GenericTypographic);
         }
 
         // The wave as five bars of square segments. Out of voice chat it's the whole wave; in voice chat the segments light up to
@@ -1932,8 +1932,8 @@ namespace CapriDesktop
                 graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
                 string lead = "CAPRI IS CONTROLLING ", name = app.ToUpperInvariant();
                 float tall = 26 * scale, icon = 20 * scale, pad = 7 * scale;
-                float leadWide = graphics.MeasureString(lead, font, PointF.Empty, Spaced).Width;
-                float nameWide = graphics.MeasureString(name, font, PointF.Empty, Spaced).Width;
+                float leadWide = graphics.MeasureString(I18n.T(lead), font, PointF.Empty, Spaced).Width;
+                float nameWide = graphics.MeasureString(I18n.T(name), font, PointF.Empty, Spaced).Width;
                 float wide = pad + icon + pad + leadWide + nameWide + pad * 1.4f;
                 float top = Math.Max(4 * scale, box.Top + 6 * scale);
                 float middle = box.Left + box.Width / 2f;
@@ -2157,8 +2157,8 @@ namespace CapriDesktop
                 using (Brush pink = new SolidBrush(Color.FromArgb(a, Look.Pink)))
                 using (Brush white = new SolidBrush(Color.FromArgb(a, 255, 255, 255)))
                 {
-                    graphics.DrawString(leadShown, font, pink, x, y, Spaced);
-                    if (nameShown.Length > 0) graphics.DrawString(nameShown, font, white, x + graphics.MeasureString(lead, font, PointF.Empty, Spaced).Width, y, Spaced);
+                    graphics.DrawString(I18n.T(leadShown), font, pink, x, y, Spaced);
+                    if (nameShown.Length > 0) graphics.DrawString(I18n.T(nameShown), font, white, x + graphics.MeasureString(I18n.T(lead), font, PointF.Empty, Spaced).Width, y, Spaced);
                 }
                 if (glitch)
                     using (Brush bar = new SolidBrush(Color.FromArgb(a * 3 / 4, pick.Next(2) == 0 ? Shatter.Mint : Look.Pink)))
@@ -2555,7 +2555,7 @@ namespace CapriDesktop
                         for (int i = 0; i < said.Count; i++)
                         {
                             int name = i == 0 ? Math.Min(said[i].Length, Speaker.Length - 1) : 0;
-                            if (name > 0) graphics.DrawString(said[i].Substring(0, name), bold, red, x, y, StringFormat.GenericTypographic);
+                            if (name > 0) graphics.DrawString(I18n.T(said[i].Substring(0, name)), bold, red, x, y, StringFormat.GenericTypographic);
                             Look.Draw(graphics, said[i].Substring(name), text, ink, x + name * cw, y);
                             y += line;
                         }
@@ -2570,7 +2570,7 @@ namespace CapriDesktop
                     if (running)
                         using (Font small = Look.Mono(12 * s, FontStyle.Regular, GraphicsUnit.Pixel))
                         using (Brush dim = new SolidBrush(Color.FromArgb(a, Look.Dim)))
-                            graphics.DrawString("ESC STOPS ME", small, dim, panel.Right - 15 * s - graphics.MeasureString("ESC STOPS ME", small, PointF.Empty, StringFormat.GenericTypographic).Width, y + 2 * s, StringFormat.GenericTypographic);
+                            graphics.DrawString(I18n.T("ESC STOPS ME"), small, dim, panel.Right - 15 * s - graphics.MeasureString(I18n.T("ESC STOPS ME"), small, PointF.Empty, StringFormat.GenericTypographic).Width, y + 2 * s, StringFormat.GenericTypographic);
                 }
                 return image;
             }
@@ -2766,20 +2766,20 @@ namespace CapriDesktop
                         {
                             string shown = lines[i].Substring(0, takes[i]);
                             int name = i == 0 ? Math.Min(takes[i], Speaker.Length - 1) : 0;
-                            if (name > 0) graphics.DrawString(shown.Substring(0, name), bold, red, x, row2, StringFormat.GenericTypographic);
+                            if (name > 0) graphics.DrawString(I18n.T(shown.Substring(0, name)), bold, red, x, row2, StringFormat.GenericTypographic);
                             string words = shown.Substring(name);
                             float from = x + name * cw;
                             // An Arabic, Urdu, Persian or Hebrew line grows leftwards from the right edge as she types it. The whole
                             // line decides, so it doesn't flip sides partway through.
                             if (Look.RightToLeft(lines[i].Substring(name)))
                             {
-                                graphics.DrawString(words, text, ink, new RectangleF(from, row2 + (i - firstLine) * line, right - from, line), Look.Leftward);
-                                caret = new PointF(right - graphics.MeasureString(words, text, PointF.Empty, Look.Leftward).Width - cw - 2 * s, row2 + (i - firstLine) * line);
+                                graphics.DrawString(I18n.T(words), text, ink, new RectangleF(from, row2 + (i - firstLine) * line, right - from, line), Look.Leftward);
+                                caret = new PointF(right - graphics.MeasureString(I18n.T(words), text, PointF.Empty, Look.Leftward).Width - cw - 2 * s, row2 + (i - firstLine) * line);
                             }
                             else
                             {
                                 float end = Look.Draw(graphics, words, text, ink, from, row2 + (i - firstLine) * line);
-                                caret = new PointF(Look.Burmese(words) ? end : Look.Thai(words) || Look.Indic(words) ? from + graphics.MeasureString(words, text, PointF.Empty, Look.Spaced).Width : x + Look.Cells(shown) * cw, row2 + (i - firstLine) * line);
+                                caret = new PointF(Look.Burmese(words) ? end : Look.Thai(words) || Look.Indic(words) ? from + graphics.MeasureString(I18n.T(words), text, PointF.Empty, Look.Spaced).Width : x + Look.Cells(shown) * cw, row2 + (i - firstLine) * line);
                             }
                         }
                         if (cursorOn && (firstLine + visibleLines == totalLines || takes[firstLine + visibleLines] == 0)) graphics.FillRectangle(ink, caret.X + s, caret.Y + s, cw * 0.85f, line - 5 * s);
@@ -2853,7 +2853,7 @@ namespace CapriDesktop
             AutoScaleMode = AutoScaleMode.None;
             BackColor = Neon.Well;
             DoubleBuffered = true;
-            prompt = new Label();
+            prompt = new UiLabel();
             prompt.Text = "YOU";
             prompt.ForeColor = Neon.Rose;
             prompt.BackColor = Neon.Well;
@@ -2865,7 +2865,7 @@ namespace CapriDesktop
             input.ForeColor = Neon.White;
             input.MaxLength = 240;
             input.AccessibleName = Text;
-            input.HandleCreated += delegate { Native.SendMessage(input.Handle, 0x1501, new IntPtr(1), "Say something to Capri"); };
+            input.HandleCreated += delegate { Native.SendMessage(input.Handle, 0x1501, new IntPtr(1), I18n.T("Say something to Capri")); };
             input.KeyDown += delegate(object sender, KeyEventArgs key)
             {
                 if (key.KeyCode == Keys.Enter) { key.SuppressKeyPress = true; Submit(); }

@@ -799,13 +799,13 @@ namespace CapriDesktop
                     using (Brush pink = new SolidBrush(Color.FromArgb(140, Look.Pink))) Look.Draw(graphics, shown, big, pink, span[0] - 1.1f * s, TitleY * s);
                     using (Brush cyan = new SolidBrush(Color.FromArgb(140, Look.Cyan))) Look.Draw(graphics, shown, big, cyan, span[0] + 1.1f * s, TitleY * s);
                     using (Brush ink = new SolidBrush(Look.Ink)) Look.Draw(graphics, shown, big, ink, span[0], TitleY * s);
-                    float timeWidth = time.Length > 0 ? graphics.MeasureString(time, small, PointF.Empty, StringFormat.GenericTypographic).Width : 0;
+                    float timeWidth = time.Length > 0 ? graphics.MeasureString(I18n.T(time), small, PointF.Empty, StringFormat.GenericTypographic).Width : 0;
                     float timeLeft = w - 18 * s - timeWidth;
                     bool timeShown = time.Length > 0 && !(legsTo > legsFrom && legsTo + 4 * s > timeLeft && legsFrom - 4 * s < w - 18 * s);
                     float artistRight = cutRight ? span[1] : w - 18 * s;
                     if (timeShown) artistRight = Math.Min(artistRight, timeLeft - 12 * s);
                     using (Brush cyan = new SolidBrush(Color.FromArgb(225, Look.Cyan))) Look.Draw(graphics, Fit(graphics, artist, small, artistRight - span[0]), small, cyan, span[0], ArtistY * s);
-                    if (timeShown) using (Brush dim = new SolidBrush(Look.Dim)) graphics.DrawString(time, small, dim, timeLeft, ArtistY * s, StringFormat.GenericTypographic);
+                    if (timeShown) using (Brush dim = new SolidBrush(Look.Dim)) graphics.DrawString(I18n.T(time), small, dim, timeLeft, ArtistY * s, StringFormat.GenericTypographic);
                 }
                 float barLeft = 18 * s, barRight = w - 18 * s, barY = SeekY * s;
                 using (Pen rail = new Pen(Color.FromArgb(58, 63, 74), 2.2f * s))
@@ -902,7 +902,7 @@ namespace CapriDesktop
             return text.Substring(0, length);
         }
 
-        private static float Measure(Graphics graphics, string text, Font font) { return graphics.MeasureString(text, font, PointF.Empty, StringFormat.GenericTypographic).Width; }
+        private static float Measure(Graphics graphics, string text, Font font) { return graphics.MeasureString(I18n.T(text), font, PointF.Empty, StringFormat.GenericTypographic).Width; }
 
         private static void DrawMenu(Graphics graphics, PointF c, float s, Color colour)
         {

@@ -23,6 +23,7 @@ namespace CapriSetup
         [STAThread]
         private static int Main(string[] args)
         {
+            I18n.Start(args);
             try { SetProcessDpiAwarenessContext(new IntPtr(-4)); } catch (EntryPointNotFoundException) { }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -748,7 +749,7 @@ namespace CapriSetup
                         graphics.DrawLines(tick, new[] { new PointF(box.Left + side * 0.22f, box.Top + side * 0.52f), new PointF(box.Left + side * 0.42f, box.Top + side * 0.72f), new PointF(box.Left + side * 0.78f, box.Top + side * 0.3f) });
                     }
                 int left = (int)(box.Right + 10 * s);
-                TextRenderer.DrawText(graphics, Text, Font, new Rectangle(left, 0, Width - left, Height), Neon.White, TextFormatFlags.VerticalCenter | TextFormatFlags.Left | TextFormatFlags.SingleLine | TextFormatFlags.NoPrefix | TextFormatFlags.EndEllipsis);
+                UiText.DrawText(graphics, Text, Font, new Rectangle(left, 0, Width - left, Height), Neon.White, TextFormatFlags.VerticalCenter | TextFormatFlags.Left | TextFormatFlags.SingleLine | TextFormatFlags.NoPrefix | TextFormatFlags.EndEllipsis);
             }
         }
     }

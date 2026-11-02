@@ -415,11 +415,11 @@ namespace CapriDesktop
                             paint.DrawLine(shade, 0, down + 1, shot.Width, down + 1);
                             paint.DrawLine(faint, 0, down, shot.Width, down);
                             string label = mark.ToString(System.Globalization.CultureInfo.InvariantCulture);
-                            SizeF size = paint.MeasureString(label, small);
+                            SizeF size = paint.MeasureString(I18n.T(label), small);
                             paint.FillRectangle(back, across + 1, 0, size.Width, size.Height);
-                            paint.DrawString(label, small, Brushes.White, across + 1, 0);
+                            paint.DrawString(I18n.T(label), small, Brushes.White, across + 1, 0);
                             paint.FillRectangle(back, 0, down + 1, size.Width, size.Height);
-                            paint.DrawString(label, small, Brushes.White, 0, down + 1);
+                            paint.DrawString(I18n.T(label), small, Brushes.White, 0, down + 1);
                         }
                     }
                     return Companion.Jpeg(shot, Longest);

@@ -764,9 +764,9 @@ namespace CapriDesktop
             return button;
         }
 
-        private static Label Heading(string text, int y) { return new Label { Text = text, Bounds = new Rectangle(16, y, 488, 18), ForeColor = Look.Yellow, Font = Look.Mono(9f, FontStyle.Bold, GraphicsUnit.Point) }; }
+        private static Label Heading(string text, int y) { return new UiLabel { Text = text, Bounds = new Rectangle(16, y, 488, 18), ForeColor = Look.Yellow, Font = Look.Mono(9f, FontStyle.Bold, GraphicsUnit.Point) }; }
 
-        private static Label Hint(string text, int y, int height) { return new Label { Text = text, Bounds = new Rectangle(16, y, 488, height), ForeColor = Look.Dim }; }
+        private static Label Hint(string text, int y, int height) { return new UiLabel { Text = text, Bounds = new Rectangle(16, y, 488, height), ForeColor = Look.Dim }; }
 
         // Memory vault, under HABITS: her notes can live in their Obsidian vault.
         private void ShowMemoryVault()
@@ -822,7 +822,7 @@ namespace CapriDesktop
                 pickVault.Click += delegate
                 {
                     // A save box, so they can pick a note already in a vault or type a new one's name.
-                    using (SaveFileDialog picker = new SaveFileDialog { Title = "Pick the note her memories go in", Filter = "Notes (*.md)|*.md", DefaultExt = "md", AddExtension = true, OverwritePrompt = false, CheckPathExists = true, FileName = Companion.VaultNote })
+                    using (SaveFileDialog picker = new SaveFileDialog { Title = I18n.T("Pick the note her memories go in"), Filter = I18n.T("Notes (*.md)|*.md"), DefaultExt = I18n.T("md"), AddExtension = true, OverwritePrompt = false, CheckPathExists = true, FileName = Companion.VaultNote })
                     {
                         string current = Companion.NotesIn(capri.Vault);
                         if (current == null && vaults.Count > 0) current = System.IO.Path.Combine(vaults[0].Value, Companion.VaultNote);
@@ -1241,6 +1241,7 @@ namespace CapriDesktop
         private int layoutText;
         private int monitorDpi;
         private bool layoutFallback;
+        private bool layoutProbe;
         private bool shownFallback;
 
         private void RememberLayout(Control control)
@@ -1346,7 +1347,12 @@ namespace CapriDesktop
 
         internal string FrameSizeShown { get { return frameSizeName.Text; } }
 
-        internal void SizeMainframe(int size) { frameSize.Slide(Math.Max(0, Array.IndexOf(FrameSizes, size))); }
+        internal void SizeMainframe(int size)
+        {
+            // Rendering-test entry point: compare controls with their intended canvas, not an OS-clamped viewport.
+            layoutProbe = true;
+            frameSize.Slide(Math.Max(0, Array.IndexOf(FrameSizes, size)));
+        }
 
         // Every control's own type grown or shrunk by this much, children first, so each reads its parent's before that changes.
         private static void Grow(Control control, float factor)
@@ -1784,7 +1790,7 @@ namespace CapriDesktop
             get
             {
                 foreach (Toggle desktopToggle in new[] { keepAwake, hideFullScreen, playerFullScreen, exploreAway })
-                    if (TextRenderer.MeasureText(desktopToggle.Text, desktopToggle.Font, Size.Empty, TextFormatFlags.NoPadding).Width > desktopToggle.NameRoom || !PageArea.Contains(desktopToggle.Bounds)) return false;
+                    if (UiText.MeasureText(desktopToggle.Text, desktopToggle.Font, Size.Empty, TextFormatFlags.NoPadding).Width > desktopToggle.NameRoom || !PageArea.Contains(desktopToggle.Bounds)) return false;
                 return keepAwake.Top >= perchNote.Bottom && keepAwake.Bottom <= hideFullScreen.Top && !string.IsNullOrEmpty(keepAwake.AccessibleName)
                     && PageArea.Contains(exploreAfter.Bounds) && PageArea.Contains(exploreAfterName.Bounds);
             }
@@ -1884,14 +1890,14 @@ namespace CapriDesktop
             }
             else if (box != null)
             {
-                Size line = TextRenderer.MeasureText(graphics, "Mg", box.Font, Size.Empty, flags);
+                Size line = UiText.MeasureText(graphics, "Mg", box.Font, Size.Empty, flags);
                 if (line.Height > box.Height || !box.Parent.ClientRectangle.Contains(box.Bounds)) problem = name + " clips the input line";
             }
             else if (rung != null)
             {
                 int left = (int)(24 * scale);
                 problem = FitsText(graphics, rung.Text, rung.Font, new Rectangle(left, 0, rung.Width - left, rung.Height), flags, at, name + " name", visible);
-                int rungAfter = left + TextRenderer.MeasureText(graphics, rung.Text, rung.Font, Size.Empty, flags).Width + (int)(8 * scale);
+                int rungAfter = left + UiText.MeasureText(graphics, rung.Text, rung.Font, Size.Empty, flags).Width + (int)(8 * scale);
                 if (problem == null) problem = FitsText(graphics, rung.Hint, rung.HintFont ?? rung.Font, new Rectangle(rungAfter, 0, Math.Max(0, rung.Width - rungAfter), rung.Height), flags, at, name + " hint", visible);
                 if (problem == null) problem = FitsText(graphics, rung.Flag, rung.FlagFont ?? rung.Font, new Rectangle(0, 0, rung.Width - (int)(6 * scale), rung.Height), flags | TextFormatFlags.Right, at, name + " flag", visible);
             }
@@ -1906,9 +1912,9 @@ namespace CapriDesktop
                 }
                 if (toggle.Hint != null && problem == null)
                 {
-                    int toggleAfter = TextRenderer.MeasureText(graphics, toggle.Text, toggle.Font, Size.Empty, flags).Width + (int)(10 * scale);
+                    int toggleAfter = UiText.MeasureText(graphics, toggle.Text, toggle.Font, Size.Empty, flags).Width + (int)(10 * scale);
                     Font hintFont = toggle.HintFont ?? toggle.Font;
-                    if (toggleAfter + TextRenderer.MeasureText(graphics, toggle.Hint, hintFont, Size.Empty, flags).Width <= toggle.NameRoom)
+                    if (toggleAfter + UiText.MeasureText(graphics, toggle.Hint, hintFont, Size.Empty, flags).Width <= toggle.NameRoom)
                         problem = FitsText(graphics, toggle.Hint, hintFont, new Rectangle(toggleAfter, 0, toggle.NameRoom - toggleAfter, toggle.Height), flags, at, name + " hint", visible);
                 }
             }
@@ -1949,7 +1955,7 @@ namespace CapriDesktop
         {
             if (string.IsNullOrEmpty(words)) return null;
             Size proposed = (flags & TextFormatFlags.WordBreak) != 0 ? new Size(Math.Max(1, area.Width), int.MaxValue) : Size.Empty;
-            Size measured = TextRenderer.MeasureText(graphics, words, font, proposed, flags);
+            Size measured = UiText.MeasureText(graphics, words, font, proposed, flags);
             if (measured.Width > area.Width || measured.Height > area.Height) return name + " needs " + measured.Width + "x" + measured.Height + " in " + area.Width + "x" + area.Height;
             int x = area.X, y = area.Y;
             if ((flags & TextFormatFlags.Right) != 0) x += area.Width - measured.Width;
@@ -1967,13 +1973,20 @@ namespace CapriDesktop
             {
                 Control control = entry.Key;
                 if (Folded(control) || !control.Visible || (control is Label && control.Text.Length == 0)) continue;
-                if (!page.Contains(control.Bounds)) return control.Text.Length > 0 ? control.Text : control.AccessibleName;
+                if (!page.Contains(control.Bounds)) return (control.Text.Length > 0 ? control.Text : control.AccessibleName) + " " + control.Bounds + " in " + page;
             }
             return null;
         }
 
         // The whole settings page, scrolled or not, in the window's own px.
-        private Rectangle PageArea { get { return paged ? new Rectangle(0, -Scaled(pageScroll), ClientSize.Width, Math.Max(ClientSize.Height, Scaled(PageNow))) : ClientRectangle; } }
+        private Rectangle PageArea
+        {
+            get
+            {
+                int width = layoutProbe ? Scaled(paged ? Wide + Column : Wide) : ClientSize.Width;
+                return paged ? new Rectangle(0, -Scaled(pageScroll), width, Math.Max(ClientSize.Height, Scaled(PageNow))) : new Rectangle(0, 0, width, ClientSize.Height);
+            }
+        }
 
         // Settings on a short screen: how much shows (or whole) and whether the rims hold her frame together.
         internal string ScrollStatus { get { return (paged && pageView < PageNow ? pageView + " tall" : "whole") + " | " + (topRim.Visible && bottomRim.Visible ? "rims" : "-"); } }
@@ -2390,6 +2403,11 @@ namespace CapriDesktop
             freeVoices.Width = Scaled(ready && !yoursShown ? 328 : 196);
             customVoice.Width = Scaled(ready ? 328 : 196);
             freeMenu.Items.Clear();
+            if (I18n.Enabled)
+            {
+                freeMenu.Items.Add(Choice("Español · voz local gratuita", capri.SpanishVoicePicked, delegate { capri.SetUpSpanishVoice(); }));
+                freeMenu.Items.Add(new ToolStripSeparator());
+            }
             foreach (FreeStyle style in LocalVoice.Styles)
             {
                 string name = style.Name;
@@ -2422,8 +2440,8 @@ namespace CapriDesktop
         {
             using (OpenFileDialog dialog = new OpenFileDialog())
             {
-                dialog.Title = "Pick 5 to 30 seconds of you talking, or of a voice you have the rights and consent to use";
-                dialog.Filter = "Voice clips (*.wav;*.mp3;*.m4a)|*.wav;*.mp3;*.m4a|All files (*.*)|*.*";
+                dialog.Title = I18n.T("Pick 5 to 30 seconds of you talking, or of a voice you have the rights and consent to use");
+                dialog.Filter = I18n.T("Voice clips (*.wav;*.mp3;*.m4a)|*.wav;*.mp3;*.m4a|All files (*.*)|*.*");
                 if (dialog.ShowDialog(this) == DialogResult.OK) capri.UseYourVoice(dialog.FileName);
             }
         }
@@ -2520,7 +2538,7 @@ namespace CapriDesktop
         private void ShowLayers()
         {
             bool on = capri.VoiceLayers.On;
-            layersKey.AccessibleDescription = on ? "On" : "Off";
+            layersKey.AccessibleDescription = on ? I18n.T("On") : I18n.T("Off");
             if (layersKey.Picked != on) { layersKey.Picked = on; layersKey.Invalidate(); }
             if (layered != null && !layered.IsDisposed) layered.Sync();
         }
@@ -2555,11 +2573,11 @@ namespace CapriDesktop
                 using (Font note = new Font(styleNote.Font.FontFamily, styleNote.Font.SizeInPoints * zoom / here, styleNote.Font.Style, GraphicsUnit.Point))
                 using (Font key = new Font(layersKey.Font.FontFamily, layersKey.Font.SizeInPoints * zoom / here, layersKey.Font.Style, GraphicsUnit.Point))
                 {
-                    int wide = TextRenderer.MeasureText(styleNote.Text, note).Width, room = (int)(styleNote.Width / here * zoom);
+                    int wide = UiText.MeasureText(styleNote.Text, note).Width, room = (int)(styleNote.Width / here * zoom);
                     if (wide > room) return "\"" + styleNote.Text + "\" is " + wide + " px in " + room + " at " + zoom;
                     foreach (string text in new[] { layersKey.Text })
                     {
-                        int size = TextRenderer.MeasureText(text, key).Width + (int)Math.Ceiling(12 * zoom), keyRoom = (int)(layersKey.Width / here * zoom);
+                        int size = UiText.MeasureText(text, key).Width + (int)Math.Ceiling(12 * zoom), keyRoom = (int)(layersKey.Width / here * zoom);
                         if (size > keyRoom) return "\"" + text + "\" is " + size + " px in " + keyRoom + " at " + zoom;
                     }
                 }
@@ -2571,6 +2589,12 @@ namespace CapriDesktop
             using (LayersSheet drawn = new LayersSheet(this, zoom))
             {
                 drawn.Show(this);
+                // This is a rendering-test helper. A small CI desktop otherwise clamps the simulated 150/200% canvas.
+                float unit = drawn.DeviceDpi / 96f * zoom;
+                Size canvas = new Size((int)Math.Round(LayersSheet.Wide * unit), (int)Math.Round(LayersSheet.Tall * unit));
+                drawn.MaximumSize = canvas;
+                drawn.MinimumSize = canvas;
+                drawn.ClientSize = canvas;
                 string crowded = drawn.Crowded(), size = " (" + drawn.ClientSize.Width + " x " + drawn.ClientSize.Height + " at " + zoom + ")";
                 if (picture != null) drawn.Picture(picture);
                 drawn.Close();
@@ -2609,6 +2633,12 @@ namespace CapriDesktop
             using (SecuritySheet drawn = new SecuritySheet(this, zoom))
             {
                 drawn.Show(this);
+                // Keep the simulated DPI canvas even when it exceeds the CI desktop's maximum window size.
+                float unit = drawn.DeviceDpi / 96f * zoom;
+                Size canvas = new Size((int)Math.Round(SecuritySheet.Wide * unit), (int)Math.Round(SecuritySheet.Tall * unit));
+                drawn.MaximumSize = canvas;
+                drawn.MinimumSize = canvas;
+                drawn.ClientSize = canvas;
                 string crowded = drawn.Crowded(), size = " (" + drawn.ClientSize.Width + " x " + drawn.ClientSize.Height + " at " + zoom + ")";
                 if (picture != null) drawn.Picture(picture);
                 drawn.Close();
@@ -2963,6 +2993,7 @@ namespace CapriDesktop
         private ContextMenuStrip Dropdown()
         {
             ContextMenuStrip strip = new ContextMenuStrip();
+            I18n.Menu(strip);
             strip.Renderer = new MenuLook();
             strip.BackColor = Ground;
             strip.ForeColor = White;
@@ -3014,7 +3045,7 @@ namespace CapriDesktop
             return key;
         }
 
-        private sealed class Note : Label
+        private sealed class Note : UiLabel
         {
             internal Note() { SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true); }
 
@@ -3046,7 +3077,7 @@ namespace CapriDesktop
 
             public override Size GetPreferredSize(Size proposed)
             {
-                Size text = TextRenderer.MeasureText(Shown, Font, Size.Empty, TextFormatFlags.SingleLine | TextFormatFlags.NoPrefix);
+                Size text = UiText.MeasureText(Shown, Font, Size.Empty, TextFormatFlags.SingleLine | TextFormatFlags.NoPrefix);
                 return new Size(text.Width + Padding.Horizontal, text.Height + Padding.Vertical);
             }
 
@@ -3054,7 +3085,7 @@ namespace CapriDesktop
 
             protected override void OnPaint(PaintEventArgs e)
             {
-                TextRenderer.DrawText(e.Graphics, Shown, Font, ClientRectangle, ForeColor, TextFormatFlags.VerticalCenter | TextFormatFlags.Left | TextFormatFlags.SingleLine | TextFormatFlags.NoPrefix);
+                UiText.DrawText(e.Graphics, Shown, Font, ClientRectangle, ForeColor, TextFormatFlags.VerticalCenter | TextFormatFlags.Left | TextFormatFlags.SingleLine | TextFormatFlags.NoPrefix);
             }
 
             protected override void WndProc(ref Message message)
@@ -3159,7 +3190,7 @@ namespace CapriDesktop
                 if (Chevron) Drop(graphics, Width - 19 * s, y, s, Enabled ? Cyan : ink, hot);
                 Rectangle area = Chevron ? new Rectangle((int)(10 * s), 0, Width - (int)(32 * s), Height) : ClientRectangle;
                 TextFormatFlags flags = TextFormatFlags.VerticalCenter | TextFormatFlags.SingleLine | TextFormatFlags.NoPrefix | TextFormatFlags.NoPadding | TextFormatFlags.EndEllipsis | (Chevron ? TextFormatFlags.Left : TextFormatFlags.HorizontalCenter);
-                TextRenderer.DrawText(graphics, Text, Font, area, ink, flags);
+                UiText.DrawText(graphics, Text, Font, area, ink, flags);
             }
         }
 
@@ -3201,7 +3232,7 @@ namespace CapriDesktop
 
             private bool OnChevron(int x) { return Chevron && x >= Width - 28 * Unit(); }
 
-            private void ShowCue() { if (Box.IsHandleCreated) Native.SendMessage(Box.Handle, 0x1501, new IntPtr(1), cue); }
+            private void ShowCue() { if (Box.IsHandleCreated) Native.SendMessage(Box.Handle, 0x1501, new IntPtr(1), I18n.T(cue)); }
 
             protected override void OnLayout(LayoutEventArgs e)
             {
@@ -3301,6 +3332,7 @@ namespace CapriDesktop
                 base.Initialize(strip);
                 ToolStripDropDown drop = strip as ToolStripDropDown;
                 if (drop == null) return;
+                I18n.Menu(drop);
                 drop.DropShadowEnabled = false;
                 drop.SizeChanged += delegate { Shape(drop); };
                 Shape(drop);
@@ -3362,7 +3394,7 @@ namespace CapriDesktop
             {
                 ToolStripItem item = e.Item;
                 Color colour = item.Tag == Title ? Rose : !item.Enabled ? Faint : (item.Selected || item.Pressed) && e.ToolStrip is ToolStripDropDown ? Cyan : e.TextColor;
-                TextRenderer.DrawText(e.Graphics, e.Text, e.TextFont, e.TextRectangle, colour, e.TextFormat);
+                UiText.DrawText(e.Graphics, e.Text, e.TextFont, e.TextRectangle, colour, e.TextFormat);
             }
 
             protected override void OnRenderItemCheck(ToolStripItemImageRenderEventArgs e)
@@ -3654,8 +3686,8 @@ namespace CapriDesktop
             {
                 using (OpenFileDialog dialog = new OpenFileDialog())
                 {
-                    dialog.Title = "Pick 10 to 30 seconds of a voice you have the rights and consent to use";
-                    dialog.Filter = "Voice clips (*.wav;*.mp3;*.m4a;*.flac)|*.wav;*.mp3;*.m4a;*.flac|All files (*.*)|*.*";
+                    dialog.Title = I18n.T("Pick 10 to 30 seconds of a voice you have the rights and consent to use");
+                    dialog.Filter = I18n.T("Voice clips (*.wav;*.mp3;*.m4a;*.flac)|*.wav;*.mp3;*.m4a;*.flac|All files (*.*)|*.*");
                     if (dialog.ShowDialog(this) == DialogResult.OK) MakeVoice(dialog.FileName);
                 }
             }
@@ -3697,8 +3729,8 @@ namespace CapriDesktop
             {
                 using (OpenFileDialog dialog = new OpenFileDialog())
                 {
-                    dialog.Title = "Pick a clip of a voice you have the rights and consent to use";
-                    dialog.Filter = "Voice clips (*.wav;*.mp3;*.m4a;*.flac)|*.wav;*.mp3;*.m4a;*.flac|All files (*.*)|*.*";
+                    dialog.Title = I18n.T("Pick a clip of a voice you have the rights and consent to use");
+                    dialog.Filter = I18n.T("Voice clips (*.wav;*.mp3;*.m4a;*.flac)|*.wav;*.mp3;*.m4a;*.flac|All files (*.*)|*.*");
                     if (dialog.ShowDialog(this) == DialogResult.OK) TakeClip(dialog.FileName);
                 }
             }
@@ -3713,8 +3745,8 @@ namespace CapriDesktop
             {
                 using (OpenFileDialog dialog = new OpenFileDialog())
                 {
-                    dialog.Title = "Pick a voice model: its .tar.bz2, or the .onnx in its folder";
-                    dialog.Filter = "Voice models (*.tar.bz2;*.zip;*.onnx)|*.tar.bz2;*.zip;*.onnx|All files (*.*)|*.*";
+                    dialog.Title = I18n.T("Pick a voice model: its .tar.bz2, or the .onnx in its folder");
+                    dialog.Filter = I18n.T("Voice models (*.tar.bz2;*.zip;*.onnx)|*.tar.bz2;*.zip;*.onnx|All files (*.*)|*.*");
                     if (dialog.ShowDialog(this) == DialogResult.OK) Take(dialog.FileName);
                 }
             }
@@ -4054,7 +4086,7 @@ namespace CapriDesktop
                     if (!a.Visible || (a is Label && a.Text.Length == 0)) continue;
                     if (!ClientRectangle.Contains(a.Bounds) || a.Right > ClientSize.Width - (int)(16 * s)) return "pokes out: " + (a.Text.Length > 0 ? a.Text : a.AccessibleName) + " " + a.Bounds + " in " + ClientSize;
                     Toggle box = a as Toggle;
-                    if (box != null && TextRenderer.MeasureText(box.Text, box.Font).Width > box.NameRoom) return "doesn't fit: " + box.Text + " " + TextRenderer.MeasureText(box.Text, box.Font).Width + " in " + box.NameRoom;
+                    if (box != null && UiText.MeasureText(box.Text, box.Font).Width > box.NameRoom) return "doesn't fit: " + box.Text + " " + UiText.MeasureText(box.Text, box.Font).Width + " in " + box.NameRoom;
                     for (int j = i + 1; j < Controls.Count; j++)
                     {
                         Control b = Controls[j];
@@ -4234,7 +4266,7 @@ namespace CapriDesktop
                     if (!a.Visible) continue;
                     if (!ClientRectangle.Contains(a.Bounds) || a.Right > ClientSize.Width - (int)(16 * s)) return "pokes out: " + (a.Text.Length > 0 ? a.Text : a.AccessibleName) + " " + a.Bounds + " in " + ClientSize;
                     Toggle box = a as Toggle;
-                    if (box != null && TextRenderer.MeasureText(box.Text, box.Font).Width > box.NameRoom) return "doesn't fit: " + box.Text;
+                    if (box != null && UiText.MeasureText(box.Text, box.Font).Width > box.NameRoom) return "doesn't fit: " + box.Text;
                     for (int j = i + 1; j < Controls.Count; j++)
                         if (Controls[j].Visible && a.Bounds.IntersectsWith(Controls[j].Bounds)) return "overlap: " + (a.Text.Length > 0 ? a.Text : a.AccessibleName) + " / " + (Controls[j].Text.Length > 0 ? Controls[j].Text : Controls[j].AccessibleName);
                 }
@@ -4495,9 +4527,9 @@ namespace CapriDesktop
                     if (!a.Visible || (a is Label && a.Text.Length == 0)) continue;
                     if (!ClientRectangle.Contains(a.Bounds) || a.Right > ClientSize.Width - (int)(16 * s)) return "pokes out: " + (a.Text.Length > 0 ? a.Text : a.AccessibleName) + " " + a.Bounds + " in " + ClientSize;
                     Toggle box = a as Toggle;
-                    if (box != null && TextRenderer.MeasureText(box.Text, box.Font).Width > box.NameRoom) return "doesn't fit: " + box.Text + " " + TextRenderer.MeasureText(box.Text, box.Font).Width + " in " + box.NameRoom;
+                    if (box != null && UiText.MeasureText(box.Text, box.Font).Width > box.NameRoom) return "doesn't fit: " + box.Text + " " + UiText.MeasureText(box.Text, box.Font).Width + " in " + box.NameRoom;
                     Key key = a as Key;
-                    if (key != null && key.Text.Length > 0 && TextRenderer.MeasureText(key.Text, key.Font).Width + (int)Math.Ceiling(12 * s) > key.Width) return "doesn't fit: " + key.Text + " " + TextRenderer.MeasureText(key.Text, key.Font).Width + " in " + key.Width;
+                    if (key != null && key.Text.Length > 0 && UiText.MeasureText(key.Text, key.Font).Width + (int)Math.Ceiling(12 * s) > key.Width) return "doesn't fit: " + key.Text + " " + UiText.MeasureText(key.Text, key.Font).Width + " in " + key.Width;
                     for (int j = i + 1; j < Controls.Count; j++)
                     {
                         Control b = Controls[j];
@@ -4509,7 +4541,7 @@ namespace CapriDesktop
                 foreach (Slider bar in new[] { pitches[0], pitches[1], delays[0], delays[1], mainPitch })
                 {
                     string widest = bar == mainPitch ? "Normal" : Array.IndexOf(pitches, bar) >= 0 ? "-11.5" : "250 ms";
-                    if (TextRenderer.MeasureText(widest, bar.Font).Width + (int)Math.Ceiling(24 * s) > bar.Width) return "doesn't fit: " + widest + " in " + bar.AccessibleName;
+                    if (UiText.MeasureText(widest, bar.Font).Width + (int)Math.Ceiling(24 * s) > bar.Width) return "doesn't fit: " + widest + " in " + bar.AccessibleName;
                 }
                 return null;
             }
@@ -4620,7 +4652,7 @@ namespace CapriDesktop
                 Rectangle band = new Rectangle(0, rolls.Next(0, Math.Max(1, Height - 4)), Width, 2 + rolls.Next((int)(6 * s) + 1));
                 graphics.SetClip(band);
                 using (Brush dark = new SolidBrush(Color.FromArgb(8, 6, 12))) graphics.FillRectangle(dark, band);
-                TextRenderer.DrawText(graphics, Shown, Font, new Rectangle(reach + shift, 0, Width - 2 * reach, (int)(Height - 4 * s)), red, flags | TextFormatFlags.PreserveGraphicsClipping);
+                UiText.DrawText(graphics, Shown, Font, new Rectangle(reach + shift, 0, Width - 2 * reach, (int)(Height - 4 * s)), red, flags | TextFormatFlags.PreserveGraphicsClipping);
                 graphics.ResetClip();
                 using (Brush shard = new SolidBrush(red))
                 using (Brush black = new SolidBrush(Color.FromArgb(8, 6, 12)))
@@ -4766,7 +4798,7 @@ namespace CapriDesktop
                     Arrow(graphics, 11 * s, middle, s, -1, value > 0, zone == -1);
                     Arrow(graphics, Width - 11 * s, middle, s, 1, value < labels.Length - 1, zone == 1);
                     int reach = (int)(26 * s);
-                    TextRenderer.DrawText(graphics, Shown, Font, new Rectangle(reach, 0, Width - 2 * reach, (int)(Height - 4 * s)), Ink, flags);
+                    UiText.DrawText(graphics, Shown, Font, new Rectangle(reach, 0, Width - 2 * reach, (int)(Height - 4 * s)), Ink, flags);
                     float dash = (labels.Length <= 4 ? 11 : 8) * s, gap = 3 * s;
                     float left = Width / 2f - (labels.Length * dash + (labels.Length - 1) * gap) / 2;
                     using (Brush off = new SolidBrush(Dash))
@@ -4795,10 +4827,10 @@ namespace CapriDesktop
                 {
                     bar.Exclude(handle);
                     graphics.SetClip(bar, CombineMode.Replace);
-                    TextRenderer.DrawText(graphics, Shown, Font, area, Ink, flags);
+                    UiText.DrawText(graphics, Shown, Font, area, Ink, flags);
                 }
                 graphics.SetClip(handle);
-                TextRenderer.DrawText(graphics, Shown, Font, area, Color.FromArgb(40, 6, 12), flags);
+                UiText.DrawText(graphics, Shown, Font, area, Color.FromArgb(40, 6, 12), flags);
                 graphics.ResetClip();
             }
 
@@ -4829,7 +4861,7 @@ namespace CapriDesktop
                 get
                 {
                     TextFormatFlags flags = TextFormatFlags.VerticalCenter | TextFormatFlags.Left | TextFormatFlags.SingleLine | TextFormatFlags.NoPrefix;
-                    return (int)(32 * ScaleOf(this)) + TextRenderer.MeasureText(Text, Font, Size.Empty, flags).Width + TextRenderer.MeasureText(Hint ?? "", HintFont ?? Font, Size.Empty, flags).Width <= Width;
+                    return (int)(32 * ScaleOf(this)) + UiText.MeasureText(Text, Font, Size.Empty, flags).Width + UiText.MeasureText(Hint ?? "", HintFont ?? Font, Size.Empty, flags).Width <= Width;
                 }
             }
 
@@ -4869,10 +4901,10 @@ namespace CapriDesktop
                 else using (Pen pen = new Pen(lit ? Cyan : Faint, 1.2f * s)) graphics.DrawPolygon(pen, diamond);
                 int left = (int)(24 * s);
                 TextFormatFlags flags = TextFormatFlags.VerticalCenter | TextFormatFlags.Left | TextFormatFlags.SingleLine | TextFormatFlags.NoPrefix | TextFormatFlags.NoPadding;
-                TextRenderer.DrawText(graphics, Text, Font, new Rectangle(left, 0, Width - left, Height), Checked ? Cyan : White, flags);
-                int after = left + TextRenderer.MeasureText(graphics, Text, Font, Size.Empty, flags).Width + (int)(8 * s);
-                if (Hint != null) TextRenderer.DrawText(graphics, Hint, HintFont ?? Font, new Rectangle(after, 0, Math.Max(0, Width - after), Height), Faint, flags);
-                if (Flag != null) TextRenderer.DrawText(graphics, Flag, FlagFont ?? Font, new Rectangle(0, 0, Width - (int)(6 * s), Height), Look.Yellow, TextFormatFlags.VerticalCenter | TextFormatFlags.Right | TextFormatFlags.SingleLine | TextFormatFlags.NoPrefix | TextFormatFlags.NoPadding);
+                UiText.DrawText(graphics, Text, Font, new Rectangle(left, 0, Width - left, Height), Checked ? Cyan : White, flags);
+                int after = left + UiText.MeasureText(graphics, Text, Font, Size.Empty, flags).Width + (int)(8 * s);
+                if (Hint != null) UiText.DrawText(graphics, Hint, HintFont ?? Font, new Rectangle(after, 0, Math.Max(0, Width - after), Height), Faint, flags);
+                if (Flag != null) UiText.DrawText(graphics, Flag, FlagFont ?? Font, new Rectangle(0, 0, Width - (int)(6 * s), Height), Look.Yellow, TextFormatFlags.VerticalCenter | TextFormatFlags.Right | TextFormatFlags.SingleLine | TextFormatFlags.NoPrefix | TextFormatFlags.NoPadding);
             }
         }
 
@@ -4978,20 +5010,20 @@ namespace CapriDesktop
                     using (Brush fill = new SolidBrush(onFill)) graphics.FillPath(fill, plate);
                     using (Pen pen = new Pen(onRim, line)) graphics.DrawPath(pen, plate);
                 }
-                TextRenderer.DrawText(graphics, "OFF", small, Rectangle.Round(off), offInk, centre);
-                TextRenderer.DrawText(graphics, "ON", small, Rectangle.Round(on), onInk, centre);
+                UiText.DrawText(graphics, "OFF", small, Rectangle.Round(off), offInk, centre);
+                UiText.DrawText(graphics, "ON", small, Rectangle.Round(on), onInk, centre);
                 if (Focused && ShowFocusCues)
                     using (GraphicsPath around = Cut(new RectangleF(start - 2 * s, line / 2, wide + 2 * s - line / 2, Height - line), 0, 0, 5 * s, 0))
                     using (Pen pen = new Pen(Cyan, line))
                         graphics.DrawPath(pen, around);
                 TextFormatFlags flags = TextFormatFlags.VerticalCenter | TextFormatFlags.Left | TextFormatFlags.SingleLine | TextFormatFlags.NoPrefix | TextFormatFlags.NoPadding | TextFormatFlags.EndEllipsis;
                 int room = NameRoom;
-                TextRenderer.DrawText(graphics, Text, Font, new Rectangle(0, 0, room, Height), Enabled ? Rose : Faint, flags);
+                UiText.DrawText(graphics, Text, Font, new Rectangle(0, 0, room, Height), Enabled ? Rose : Faint, flags);
                 if (Hint == null) return;
                 TextFormatFlags measure = TextFormatFlags.SingleLine | TextFormatFlags.NoPrefix | TextFormatFlags.NoPadding;
-                int after = TextRenderer.MeasureText(graphics, Text, Font, Size.Empty, measure).Width + (int)(10 * s);
+                int after = UiText.MeasureText(graphics, Text, Font, Size.Empty, measure).Width + (int)(10 * s);
                 Font hint = HintFont ?? Font;
-                if (after + TextRenderer.MeasureText(graphics, Hint, hint, Size.Empty, measure).Width <= room) TextRenderer.DrawText(graphics, Hint, hint, new Rectangle(after, 0, room - after, Height), Faint, flags);
+                if (after + UiText.MeasureText(graphics, Hint, hint, Size.Empty, measure).Width <= room) UiText.DrawText(graphics, Hint, hint, new Rectangle(after, 0, room - after, Height), Faint, flags);
             }
         }
     }
