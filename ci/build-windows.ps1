@@ -60,8 +60,37 @@ if ($SpanishTest) {
 if (-not $SmokeTest) { return }
 $runtime = Join-Path $out 'smoke\runtime'
 $package = Join-Path $out 'smoke\package'
+$runtimeStarted = [DateTime]::UtcNow
+$runtimeClock = [Diagnostics.Stopwatch]::StartNew()
+$runtimeFailure = Join-Path $runtime 'failure.txt'
+$runtimeStage = Join-Path $runtime 'smoke-step.txt'
+$lastStage = ''
+$runtimeTimedOut = $false
 $check = Start-Process -FilePath $app -ArgumentList @('--smoke-test', ('"' + $runtime + '"')) -PassThru -WindowStyle Hidden
-if (-not $check.WaitForExit($SmokeSeconds * 1000)) { $check.Kill(); throw 'Runtime smoke test timed out.' }
+while (-not $check.WaitForExit(1000)) {
+    if (Test-Path -LiteralPath $runtimeStage) {
+        $stage = [IO.File]::ReadAllText($runtimeStage)
+        if ($stage -ne $lastStage) { Write-Output ('Runtime: ' + $stage); $lastStage = $stage }
+    }
+    # Later integration steps share state. Stop at the first real failure instead of producing a cascade or hanging.
+    if ((Test-Path -LiteralPath $runtimeFailure) -and (Get-Item -LiteralPath $runtimeFailure).LastWriteTimeUtc -ge $runtimeStarted) {
+        Write-Output 'Runtime stopped after the first failed step; its report follows.'
+        $check.Kill()
+        $check.WaitForExit()
+        break
+    }
+    if ($runtimeClock.Elapsed.TotalSeconds -ge $SmokeSeconds) {
+        $runtimeTimedOut = $true
+        $check.Kill()
+        $check.WaitForExit()
+        break
+    }
+}
+if ($runtimeTimedOut) {
+    if (Test-Path -LiteralPath $runtimeStage) { Get-Content -LiteralPath $runtimeStage }
+    if (Test-Path -LiteralPath $runtimeFailure) { Get-Content -LiteralPath $runtimeFailure }
+    throw 'Runtime smoke test timed out.'
+}
 if (Test-Path -LiteralPath (Join-Path $runtime 'smoke-test.txt')) { Get-Content -LiteralPath (Join-Path $runtime 'smoke-test.txt') }
 elseif ($check.ExitCode -eq 0) { throw 'Runtime smoke test wrote no results. Another smoke test probably held the lock; rerun it when that one ends.' }
 if ($check.ExitCode -ne 0) {
