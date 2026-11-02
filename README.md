@@ -50,7 +50,7 @@ Si el SDK no está instalado en la ubicación habitual, pasa `-WindowsMetadata R
 
 `-SpanishTest` comprueba los catálogos, la presentación, los identificadores conservados y el espacio de los textos a varias escalas; deja capturas y resultados en `out/windows/spanish`. La prueba general original sigue disponible con `-SmokeTest`.
 
-En GitHub las comprobaciones se ejecutan una sola vez por cambio de la propuesta y también al actualizar `main`. Windows dispone de 15 minutos para la comprobación general. La medición de rendimiento de ventanas transparentes se reserva para un escritorio interactivo: en GitHub se registra explícitamente como `LIMIT`, mientras que las comprobaciones de fotogramas, interpolación, intervalos y ajustes siguen ejecutándose. La medición completa permanece disponible al usar `-SmokeTest` en un PC.
+En GitHub las comprobaciones se ejecutan una sola vez por cambio de la propuesta y también al actualizar `main`. Windows dispone de 15 minutos para la comprobación general. Las ventanas simuladas al 150% y 200% conservan su lienzo completo aunque el escritorio virtual sea pequeño, para comprobar los controles sin que Windows recorte la imagen. Se mantiene la medición original de animación.
 
 **Limitación observada al validar v0.7.8:** la prueba general original falla en este equipo al reconocer los números de su imagen de prueba de OCR. Se reprodujo con la versión original sin traducir y con esta edición. Ese fallo no se ha ocultado ni modificado. Las comprobaciones específicas de la traducción se ejecutan por separado. Los mensajes generados por proveedores externos y las tareas complejas requieren pruebas de uso continuadas.
 
