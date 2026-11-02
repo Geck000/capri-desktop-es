@@ -80,6 +80,11 @@ namespace CapriDesktop
                     Application.DoEvents();
                     foreach (Form form in Application.OpenForms) if (form != frame && form.GetType().Name == "SecuritySheet") Capture(form, output, "seguridad");
                     frame.CloseSecurity();
+                    foreach (float zoom in new[] { 1f, 1.5f, 2f })
+                    {
+                        string securityProblem = frame.SecurityAt(zoom, Path.Combine(output, "seguridad-" + (int)(zoom * 100) + ".png"));
+                        Require(securityProblem == null, "seguridad al " + zoom + ": " + securityProblem);
+                    }
                     frame.ShowLayersWindow();
                     Application.DoEvents();
                     Require(frame.LayersCrowded == null, "capas: " + frame.LayersCrowded);

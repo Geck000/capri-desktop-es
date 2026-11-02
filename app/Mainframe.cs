@@ -2620,6 +2620,12 @@ namespace CapriDesktop
             using (SecuritySheet drawn = new SecuritySheet(this, zoom))
             {
                 drawn.Show(this);
+                // Keep the simulated DPI canvas even when it exceeds the CI desktop's maximum window size.
+                float unit = drawn.DeviceDpi / 96f * zoom;
+                Size canvas = new Size((int)Math.Round(SecuritySheet.Wide * unit), (int)Math.Round(SecuritySheet.Tall * unit));
+                drawn.MaximumSize = canvas;
+                drawn.MinimumSize = canvas;
+                drawn.ClientSize = canvas;
                 string crowded = drawn.Crowded(), size = " (" + drawn.ClientSize.Width + " x " + drawn.ClientSize.Height + " at " + zoom + ")";
                 if (picture != null) drawn.Picture(picture);
                 drawn.Close();

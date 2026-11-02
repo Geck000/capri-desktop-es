@@ -18750,10 +18750,7 @@ namespace CapriDesktop
                                     SetPerchFps(30);
                                     Preferences older = (Preferences)new DataContractJsonSerializer(typeof(Preferences)).ReadObject(new MemoryStream(System.Text.Encoding.UTF8.GetBytes("{\"Size\":240}")));
                                     if (!savedFast || snapped != 40 || unset != 30 || over != 60 || under != 10 || older.PerchFps != 30 || new Preferences().PerchFps != 30 || LoadPreferences().PerchFps != 30) throw new Exception("Perch fps didn't save and load: saved " + savedFast + ", 37 to " + snapped + ", 0 to " + unset + ", 99 to " + over + ", 7 to " + under + ", old settings " + older.PerchFps);
-                                    smokeStep("step 0: perch FPS throughput benchmark");
-                                    // The deterministic frame, interpolation, timer interval and persistence checks above run everywhere.
-                                    // A shared virtual CI desktop cannot measure real layered-window throughput reliably.
-                                    // Keep this interactive benchmark on actual desktops, with the same cleanup on both paths.
+                                    // What each fps costs: a timer paced like her frame timer runs her frame work while she sits, and each tick is timed.
                                     long spent = 0;
                                     int ticked = 0, drew = 0, intervalAt30 = 0, perchSizeWas = preferences.Size;
                                     double probeUntil = 0;
@@ -18808,25 +18805,21 @@ namespace CapriDesktop
                                     frames.Stop();
                                     try
                                     {
-                                        if (OnGitHub) costs.Add("LIMIT layered-window throughput benchmark needs an interactive Windows desktop; deterministic FPS, interpolation, timer interval and settings checks passed");
-                                        else
+                                        costs.Add(drawCost());
+                                        for (int pass = 0; pass < PerchRates.Length + 2; pass++)
                                         {
-                                            costs.Add(drawCost());
-                                            for (int pass = 0; pass < PerchRates.Length + 2; pass++)
-                                            {
-                                                bool giant = pass >= PerchRates.Length;
-                                                int fps = giant ? (pass == PerchRates.Length ? 30 : 60) : PerchRates[pass];
-                                                if (giant && preferences.Size != MaxSize) { SetCharacterSize(MaxSize); costs.Add(drawCost()); }
-                                                preferences.PerchFps = fps;
-                                                probe.Interval = FrameInterval(clock.Elapsed.TotalSeconds);
-                                                if (fps == 30 && !giant) intervalAt30 = probe.Interval;
-                                                pump(0.3);
-                                                spent = 0;
-                                                ticked = drew = 0;
-                                                double took = pump(1.5);
-                                                drawRates[pass] = drew / took;
-                                                costs.Add(fps + " fps" + (giant ? " at Giant" : "") + ": " + (ticked / took).ToString("0") + " ticks/s, " + drawRates[pass].ToString("0") + " draws/s, " + (spent * 100.0 / Stopwatch.Frequency / took).ToString("0") + "% of one core");
-                                            }
+                                            bool giant = pass >= PerchRates.Length;
+                                            int fps = giant ? (pass == PerchRates.Length ? 30 : 60) : PerchRates[pass];
+                                            if (giant && preferences.Size != MaxSize) { SetCharacterSize(MaxSize); costs.Add(drawCost()); }
+                                            preferences.PerchFps = fps;
+                                            probe.Interval = FrameInterval(clock.Elapsed.TotalSeconds);
+                                            if (fps == 30 && !giant) intervalAt30 = probe.Interval;
+                                            pump(0.3);
+                                            spent = 0;
+                                            ticked = drew = 0;
+                                            double took = pump(1.5);
+                                            drawRates[pass] = drew / took;
+                                            costs.Add(fps + " fps" + (giant ? " at Giant" : "") + ": " + (ticked / took).ToString("0") + " ticks/s, " + drawRates[pass].ToString("0") + " draws/s, " + (spent * 100.0 / Stopwatch.Frequency / took).ToString("0") + "% of one core");
                                         }
                                     }
                                     finally
@@ -18841,10 +18834,9 @@ namespace CapriDesktop
                                         test.Start();
                                     }
                                     File.WriteAllLines(Path.Combine(output, "perch-fps.txt"), costs.ToArray());
-                                    if (!OnGitHub && (intervalAt30 != 33 || drawRates[6] < drawRates[3] * 1.5 || drawRates[0] >= drawRates[3] || drawRates[0] > 12 || seat != held)) throw new Exception("Perch fps timing went wrong (interval at 30: " + intervalAt30 + ", seat kept " + (seat == held) + "): " + string.Join("; ", costs.ToArray()));
+                                    if (intervalAt30 != 33 || drawRates[6] < drawRates[3] * 1.5 || drawRates[0] >= drawRates[3] || drawRates[0] > 12 || seat != held) throw new Exception("Perch fps timing went wrong (interval at 30: " + intervalAt30 + ", seat kept " + (seat == held) + "): " + string.Join("; ", costs.ToArray()));
                                     RenderFrame();
                                     checks.Add("PASS perch fps: 10 to 60 keeps her 2 s loop with fps x 2 pictures in it, 30 shows the same frames as before and ticks every 33 ms, below 30 holds frames and ticks slower, above 30 mixes exact in-betweens (drawn at most " + tweenOff + "/255 off halfway) and ticks every 1/64 s only while she sits, ticks with nothing new skip drawing, and it saves and loads; " + string.Join("; ", costs.ToArray()));
-                                    smokeStep("step 0: perch FPS checks complete");
                                 }
                                 shelf.Hide();
                                 double gone = clock.Elapsed.TotalSeconds;
