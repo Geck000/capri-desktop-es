@@ -32,6 +32,8 @@ Escribe con **Ctrl + Alt + T**, habla con **Ctrl + Alt + V** y silencia el micr�
 
 La voz HD original requiere una grabación que tengas derecho a utilizar; no hace falta para usar la voz española incluida como opción. Las APIs externas son opcionales y pueden tener costes y condiciones propios.
 
+La voz original **La suya (Her own)** conserva su acento inglés. Elegir Español como idioma de conversación no cambia ese acento. Para pronunciación peninsular usa la opción española Piper es_ES, con la voz femenina 1.
+
 ## Actualizar desde Capri original
 
 Cierra Capri desde su menú y ejecuta el instalador traducido. Conserva la carpeta de datos, los modelos y los ajustes. Las actualizaciones automáticas de binarios originales se mantienen manuales en esta edición para conservar la traducción; consulta las versiones publicadas de la edición española antes de actualizar.
@@ -47,6 +49,8 @@ Se utiliza el compilador de .NET Framework 4.8 de Windows y `Windows.winmd` del 
 Si el SDK no está instalado en la ubicación habitual, pasa `-WindowsMetadata RUTA\Windows.winmd`. Las referencias oficiales también están disponibles en el paquete NuGet de Microsoft Windows SDK CPP. No se incluyen herramientas ni modelos descargados en este repositorio.
 
 `-SpanishTest` comprueba los catálogos, la presentación, los identificadores conservados y el espacio de los textos a varias escalas; deja capturas y resultados en `out/windows/spanish`. La prueba general original sigue disponible con `-SmokeTest`.
+
+En GitHub las comprobaciones se ejecutan una sola vez por cambio de la propuesta y también al actualizar `main`. Windows dispone de 15 minutos para la comprobación general. La medición de rendimiento de ventanas transparentes se reserva para un escritorio interactivo: en GitHub se registra explícitamente como `LIMIT`, mientras que las comprobaciones de fotogramas, interpolación, intervalos y ajustes siguen ejecutándose. La medición completa permanece disponible al usar `-SmokeTest` en un PC.
 
 **Limitación observada al validar v0.7.8:** la prueba general original falla en este equipo al reconocer los números de su imagen de prueba de OCR. Se reprodujo con la versión original sin traducir y con esta edición. Ese fallo no se ha ocultado ni modificado. Las comprobaciones específicas de la traducción se ejecutan por separado. Los mensajes generados por proveedores externos y las tareas complejas requieren pruebas de uso continuadas.
 
