@@ -1241,6 +1241,7 @@ namespace CapriDesktop
         private int layoutText;
         private int monitorDpi;
         private bool layoutFallback;
+        private bool layoutProbe;
         private bool shownFallback;
 
         private void RememberLayout(Control control)
@@ -1346,7 +1347,13 @@ namespace CapriDesktop
 
         internal string FrameSizeShown { get { return frameSizeName.Text; } }
 
-        internal void SizeMainframe(int size) { frameSize.Slide(Math.Max(0, Array.IndexOf(FrameSizes, size))); }
+        internal void SizeMainframe(int size)
+        {
+            // Rendering-test entry point: let the simulated canvas exceed a small CI desktop.
+            layoutProbe = true;
+            frameSize.Slide(Math.Max(0, Array.IndexOf(FrameSizes, size)));
+            Arrange(expanded);
+        }
 
         // Every control's own type grown or shrunk by this much, children first, so each reads its parent's before that changes.
         private static void Grow(Control control, float factor)
@@ -1600,7 +1607,13 @@ namespace CapriDesktop
             updateNote.MaximumSize = new Size(Scaled(328), 0);
             if (keysNote != null) keysNote.MaximumSize = new Size(Scaled(328), 0);
             if (paged) pageView = Fit();
-            ClientSize = new Size(Scaled(paged ? Wide + Column : Wide), Scaled(paged ? pageView : Tall + shift + below - fold));
+            Size canvas = new Size(Scaled(paged ? Wide + Column : Wide), Scaled(paged ? pageView : Tall + shift + below - fold));
+            if (layoutProbe)
+            {
+                MinimumSize = MaximumSize = Size.Empty;
+                MaximumSize = MinimumSize = canvas;
+            }
+            ClientSize = canvas;
             ScrollPage(pageScroll);
             bool scrolls = paged && pageView < PageNow;
             topRim.Visible = bottomRim.Visible = scrolls;

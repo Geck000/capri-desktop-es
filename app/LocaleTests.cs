@@ -66,6 +66,7 @@ namespace CapriDesktop
                                 frame.ShowSettings(page);
                                 string problem = frame.TextFits();
                                 Require(problem == null, dpi + " DPI / " + percent + "%: " + problem);
+                                if (page) Require(frame.Outside() == null, "controles dentro del lienzo: " + dpi + " DPI / " + percent + "%: " + frame.Outside());
                             }
                         }
                     frame.LayoutScale(0, 0);
